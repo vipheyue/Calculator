@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="expression">#5555</color>
+
+    <color name="color_operator_normal">#FF9000</color>
+    <color name="color_operator_pressed">#99FF9000</color>
+
+
+    <color name="color_digital_normal">#E0E0E0</color>
+    <color name="color_digital_pressed">#D6D6D6</color>
+    <color name="color_divider">#8E8E8E</color>
+</resources>
