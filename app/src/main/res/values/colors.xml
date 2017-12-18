@@ -13,4 +13,5 @@
     <color name="color_digital_normal">#E0E0E0</color>
     <color name="color_digital_pressed">#D6D6D6</color>
     <color name="color_divider">#8E8E8E</color>
+    <color name="color_panel">#292929</color>
 </resources>

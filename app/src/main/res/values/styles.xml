@@ -13,6 +13,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/operator_bg</item>
         <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:onClick">operatorOnClick</item>
 
 
     </style>
@@ -21,5 +22,6 @@
         <item name="android:textSize">26sp</item>
         <item name="android:background">@drawable/digital_bg</item>
         <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:onClick">digitalOnClick</item>
     </style>
 </resources>
