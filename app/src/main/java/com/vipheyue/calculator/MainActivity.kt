@@ -8,7 +8,6 @@ import android.widget.Button
 import com.udojava.evalex.Expression
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
-import java.math.BigDecimal
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,10 +61,10 @@ class MainActivity : AppCompatActivity() {
             val expression = Expression(equationStr)
 
             var expressionResult = expression.eval()
-                    .setScale(4, BigDecimal.ROUND_HALF_UP)
-                    .toDouble()
-                    .toString()
-
+//                    .setScale(4, BigDecimal.ROUND_HALF_UP)
+//                    .toDouble()
+//                    .toString()
+                    .toPlainString()
 
             //添加 等号 和 结果
             val message = button.text.toString()
