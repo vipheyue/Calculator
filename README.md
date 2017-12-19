@@ -1,3 +1,10 @@
+
+license:GPL
+
+商业用途请准守协议
+
+仅供学习.
+
 ![enter image description here](http://heyue.oss-cn-hangzhou.aliyuncs.com/AppData/Calculator/ADD59F3D-2203-4CD2-AC73-E02373A2E4D1.png)
 
 
