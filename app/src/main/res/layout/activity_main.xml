@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.vipheyue.calculator.MainActivity">
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView_history"
         android:layout_width="0dp"
@@ -35,6 +34,7 @@
         android:paddingRight="8dp"
         android:singleLine="true"
         android:text=""
+        android:contentDescription="tv_equation_panel"
         android:textColor="@android:color/white"
         android:textSize="38sp"
         android:paddingBottom="2dp"

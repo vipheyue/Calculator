@@ -17,7 +17,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -31,6 +31,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+//    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
+
     // Anko Commons
     compile "org.jetbrains.anko:anko-commons:$anko_version"
     compile 'com.udojava:EvalEx:1.18'
