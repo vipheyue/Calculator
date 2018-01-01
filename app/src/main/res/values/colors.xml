@@ -6,7 +6,7 @@
 
     <color name="expression">#5555</color>
 
-    <color name="color_operator_normal">#FF9000</color>
+    <color name="color_operator_normal">#ee1e86</color>
     <color name="color_operator_pressed">#99FF9000</color>
 
 

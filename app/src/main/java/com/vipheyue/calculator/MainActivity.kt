@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
     fun equalOnClick(view: View) {
         val symbol = (view as Button).text.toString()
-
+        if (havedResult) return
         try {
             //计算表达式
             val expression = Expression(waitCalculateStr)
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
     fun delOnclick(view: View) {
         if (havedResult) waitCalculateStr = ""
-          havedResult = false
+        havedResult = false
 
         if (waitCalculateStr.isNotEmpty()) waitCalculateStr = waitCalculateStr.substring(0, waitCalculateStr.length - 1)
         tv_equation_panel.setText(waitCalculateStr)
