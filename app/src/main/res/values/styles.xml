@@ -24,4 +24,8 @@
         <item name="android:fontFamily">sans-serif-smallcaps</item>
         <item name="android:onClick">digitalOnClick</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

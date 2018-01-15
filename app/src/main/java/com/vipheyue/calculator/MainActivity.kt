@@ -4,13 +4,16 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.view.GravityCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Button
 import com.udojava.evalex.Expression
 import io.realm.Realm
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_drawer.*
+import kotlinx.android.synthetic.main.app_bar_drawer.*
+import kotlinx.android.synthetic.main.content_drawer.*
 import org.jetbrains.anko.toast
 
 
@@ -23,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var historyAdapter: HistoryAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_drawer)
         initView()
     }
 
@@ -33,6 +36,9 @@ class MainActivity : AppCompatActivity() {
             tv_equation_panel.setText(waitCalculateStr)
             havedResult = false
             true
+        }
+        fab.setOnClickListener { view ->
+            drawer_layout.openDrawer(GravityCompat.START)
         }
         recyclerView_history.setLayoutManager(LinearLayoutManager(this))
 
