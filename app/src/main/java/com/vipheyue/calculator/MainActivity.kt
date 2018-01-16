@@ -3,17 +3,23 @@ package com.vipheyue.calculator
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import com.udojava.evalex.Expression
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.app_bar_drawer.*
 import kotlinx.android.synthetic.main.content_drawer.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 
@@ -40,6 +46,8 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             drawer_layout.openDrawer(GravityCompat.START)
         }
+        nav_view.setNavigationItemSelectedListener(MyNavigation())
+
         recyclerView_history.setLayoutManager(LinearLayoutManager(this))
 
 
@@ -58,6 +66,28 @@ class MainActivity : AppCompatActivity() {
             val mClipData = ClipData.newPlainText(historyTable.comment, historyTable.result)
             cm.primaryClip = mClipData
             toast("复制成功---> " + historyTable.result)
+        }
+        historyAdapter.setOnItemLongClickListener { adapter, view, position ->
+            val builder = AlertDialog.Builder(this).setTitle("设置备注")
+
+            val inflater = getLayoutInflater()
+            var view = inflater.inflate(R.layout.add_remark, null)
+            var et_remark = view.findViewById<EditText>(R.id.et_remark)
+            builder.setView(view)
+                    .setPositiveButton("添加备注", DialogInterface.OnClickListener { dialog, id ->
+                        //存入数据库
+                        realm.beginTransaction()
+                        val historyTable = HistoryTable(dataCenter.get(position).result)
+                        historyTable.comment = et_remark.text.toString().trim()
+                        val realmUser = realm.copyToRealm(historyTable)
+                        realm.commitTransaction()
+                        historyAdapter.addData(historyTable)
+                        recyclerView_history.smoothScrollToPosition(dataCenter.size)
+                    })
+                    .setNegativeButton("取消", DialogInterface.OnClickListener { dialog, id -> })
+            builder.create().show()
+
+            true
         }
         recyclerView_history.smoothScrollToPosition(dataCenter.size)
 
@@ -118,6 +148,41 @@ class MainActivity : AppCompatActivity() {
 
         if (waitCalculateStr.isNotEmpty()) waitCalculateStr = waitCalculateStr.substring(0, waitCalculateStr.length - 1)
         tv_equation_panel.setText(waitCalculateStr)
+    }
+
+    private inner class MyNavigation() : NavigationView.OnNavigationItemSelectedListener {
+        override fun onNavigationItemSelected(item: MenuItem): Boolean {
+            // Handle navigation view item clicks here.
+            when (item.itemId) {
+                R.id.nav_change_skin -> {
+                   toast("xxxxkj")
+                }
+                R.id.nav_sound -> {
+
+                }
+                R.id.nav_expression -> {
+                    startActivity<UniversalExpressionActivity>()
+                }
+                R.id.nav_change_case -> {
+
+                }
+                R.id.nav_share -> {
+
+                }
+                R.id.nav_feedback -> {
+
+                }
+            }
+
+            drawer_layout.closeDrawer(GravityCompat.START)
+            return true
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ClipboardManagerHelper.discernSymbol(this)
     }
 
     override fun onDestroy() {

@@ -5,31 +5,35 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_change_skin"
             android:icon="@drawable/ic_menu_camera"
             android:title="换肤" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_sound"
             android:icon="@drawable/ic_menu_gallery"
             android:title="按键音" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_expression"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="万能表达式" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_change_case"
             android:icon="@drawable/ic_menu_manage"
             android:title="大小写转换" />
     </group>
 
-    <item android:title="特色服务">
+    <item android:title="智能剪切板,复制后自动识别">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
+                android:title="分享" />
+            <item
+                android:id="@+id/nav_relatives"
+                android:icon="@drawable/ic_menu_share"
                 android:title="亲戚计算器" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_menu_send"
                 android:title="意见反馈" />
         </menu>
