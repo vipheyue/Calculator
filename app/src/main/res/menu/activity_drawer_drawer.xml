@@ -11,7 +11,8 @@
         <item
             android:id="@+id/nav_sound"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="按键音" />
+            android:title="按键音"
+            android:visible="false" />
         <item
             android:id="@+id/nav_expression"
             android:icon="@drawable/ic_menu_slideshow"
@@ -19,7 +20,7 @@
         <item
             android:id="@+id/nav_change_case"
             android:icon="@drawable/ic_menu_manage"
-            android:title="大小写转换" />
+            android:title="大写人民币" />
     </group>
 
     <item android:title="智能剪切板,复制后自动识别">
@@ -31,7 +32,13 @@
             <item
                 android:id="@+id/nav_relatives"
                 android:icon="@drawable/ic_menu_share"
-                android:title="亲戚计算器" />
+                android:title="亲戚计算器"
+                android:visible="false" />
+
+            <item
+                android:icon="@drawable/ic_menu_share"
+                android:title="清理历史记录"
+                android:visible="false" />
             <item
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_menu_send"

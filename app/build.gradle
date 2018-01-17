@@ -17,7 +17,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -39,4 +39,6 @@ dependencies {
     compile 'com.udojava:EvalEx:1.18'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.github.QuadFlask:colorpicker:0.0.13'
+
 }

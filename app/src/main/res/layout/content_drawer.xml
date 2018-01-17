@@ -213,12 +213,12 @@
         android:layout_height="0dp"
         android:text="9"
         app:layout_constraintBottom_toBottomOf="@+id/btn_digital_8"
-        app:layout_constraintEnd_toStartOf="@+id/btn_operator_add"
+        app:layout_constraintEnd_toStartOf="@+id/btn_operator_plus"
         app:layout_constraintStart_toEndOf="@+id/btn_digital_8"
         app:layout_constraintTop_toTopOf="@+id/btn_digital_8" />
 
     <Button
-        android:id="@+id/btn_operator_add"
+        android:id="@+id/btn_operator_plus"
         style="@style/operator_style"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -295,13 +295,13 @@
         android:layout_height="0dp"
         android:text="3"
         app:layout_constraintBottom_toBottomOf="@+id/btn_digital_1"
-        app:layout_constraintEnd_toStartOf="@+id/btn_operator_plus"
+        app:layout_constraintEnd_toStartOf="@+id/btn_operator_add"
 
         app:layout_constraintStart_toEndOf="@+id/btn_digital_2"
         app:layout_constraintTop_toTopOf="@+id/btn_digital_1" />
 
     <Button
-        android:id="@+id/btn_operator_plus"
+        android:id="@+id/btn_operator_add"
         style="@style/operator_style"
         android:layout_width="0dp"
         android:layout_height="0dp"

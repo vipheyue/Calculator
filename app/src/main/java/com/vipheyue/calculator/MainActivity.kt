@@ -1,9 +1,7 @@
 package com.vipheyue.calculator
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.DialogInterface
+import android.content.*
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -37,6 +35,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        //button 皮肤颜色
+//        btn_operator_div.setBackgroundColor()
+//        var mySelectorGrad: GradientDrawable = btn_operator_div.background as GradientDrawable
+//        myGrad.setColor(Color.parseColor("#00ff00"));
+
+//
+        var changeBg = ChangeBg()
+        changeBg.change(btn_operator_div, this)
+        changeBg.change(btn_operator_plus, this)
+        changeBg.change(btn_operator_sub, this)
+        changeBg.change(btn_operator_add, this)
+        changeBg.change(btn_operator_equal, this)
+
+
+
         btn_digital_del.setOnLongClickListener {
             waitCalculateStr = ""
             tv_equation_panel.setText(waitCalculateStr)
@@ -155,7 +168,8 @@ class MainActivity : AppCompatActivity() {
             // Handle navigation view item clicks here.
             when (item.itemId) {
                 R.id.nav_change_skin -> {
-                   toast("xxxxkj")
+                    var picker = ColorPicker()
+                    picker.pick(this@MainActivity)
                 }
                 R.id.nav_sound -> {
 
@@ -164,13 +178,19 @@ class MainActivity : AppCompatActivity() {
                     startActivity<UniversalExpressionActivity>()
                 }
                 R.id.nav_change_case -> {
-
+                   startActivity<TraditionalActivity>()
                 }
                 R.id.nav_share -> {
 
                 }
                 R.id.nav_feedback -> {
-
+                    try {
+                        val url = "https://jq.qq.com/?_wv=1027&k=5mvN2Tr"
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                        toast("请加入QQ群:469859289")
+                    } catch (e: Exception) {
+                        toast("请加入QQ群:469859289")
+                    }
                 }
             }
 
