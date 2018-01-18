@@ -8,7 +8,7 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.vipheyue.calculator"
+        applicationId "com.welightworld.calculator"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1

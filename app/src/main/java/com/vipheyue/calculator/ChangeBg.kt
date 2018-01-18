@@ -12,8 +12,8 @@ import android.view.View
 
 class ChangeBg {
     fun change(view: View, mContext: Context) {
-        val mySelectorGrad = view.background as StateListDrawable
         try {
+            val mySelectorGrad = view.background as StateListDrawable
             val slDraClass = StateListDrawable::class.java
             val getStateCountMethod = slDraClass.getDeclaredMethod("getStateCount", *arrayOfNulls(0))
             val getStateSetMethod = slDraClass.getDeclaredMethod("getStateSet", Int::class.javaPrimitiveType)

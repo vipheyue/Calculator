@@ -1,6 +1,9 @@
 package com.vipheyue.calculator;
 
+import java.util.UUID;
+
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
 /**
@@ -11,7 +14,8 @@ public class HistoryTable  extends RealmObject {
     @Required
     public String result;
     public String comment="";
-
+    @PrimaryKey
+    private String id = UUID.randomUUID().toString();
     public HistoryTable() {
     }
 

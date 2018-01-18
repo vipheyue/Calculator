@@ -171,17 +171,28 @@ class MainActivity : AppCompatActivity() {
                     var picker = ColorPicker()
                     picker.pick(this@MainActivity)
                 }
-                R.id.nav_sound -> {
 
-                }
                 R.id.nav_expression -> {
                     startActivity<UniversalExpressionActivity>()
                 }
                 R.id.nav_change_case -> {
-                   startActivity<TraditionalActivity>()
+                    startActivity<TraditionalActivity>()
+                }
+                R.id.nav_history_del -> {
+                    val results = realm.where(HistoryTable::class.java).findAll()
+                    realm.executeTransaction {
+                        results.deleteAllFromRealm()
+                        toast("删除成功,重启后生效")
+                    }
                 }
                 R.id.nav_share -> {
-
+                    try {
+                        val url = "http://calculator.welightworld.com"
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                        toast("请加入QQ群:469859289")
+                    } catch (e: Exception) {
+                        toast("请加入QQ群:469859289")
+                    }
                 }
                 R.id.nav_feedback -> {
                     try {
