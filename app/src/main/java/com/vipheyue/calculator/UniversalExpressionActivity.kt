@@ -21,6 +21,15 @@ class UniversalExpressionActivity : AppCompatActivity() {
 
     private fun initView() {
         tv_introduce.setMovementMethod(ScrollingMovementMethod.getInstance());
+        btn_digital_parenthesis_left.setOnClickListener {
+            editText_input.setText(editText_input.text.toString().trim()+"(")
+            editText_input.setSelection(editText_input.length());
+        }
+        btn_digital_parenthesis_right.setOnClickListener {
+            editText_input.setText(editText_input.text.toString().trim()+")")
+            editText_input.setSelection(editText_input.length());
+
+        }
         button_clear.setOnClickListener {
             editText_input.setText("")
             tv_result.setText("")

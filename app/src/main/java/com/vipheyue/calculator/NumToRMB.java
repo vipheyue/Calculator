@@ -26,9 +26,6 @@ import java.util.regex.Pattern;
  * 四、阿拉伯小写金额数字前面均应填写人民币符号“￥”，阿拉伯小写金额数字要认真填写，不得连写分辨不清。
  * 五、票据的出票日期必须使用中文大写，为防止变造票据的出票日期，在填写月、日时、月为壹、贰和壹拾的，日为壹至玖和壹拾、贰拾和叁拾的，应在其前加“零”，日为拾壹至拾玖的应在其前加“壹”，如1月15日应写成零壹月壹拾伍日，再如10月20日应写成零壹拾月零贰拾日。
  * 六、票据出票日期使用小写填写的，银行不予受理；大写日期未按要求规范填写的，银行可予受理，但由此造成损失的由出票人自行承担。
- * @作者      : 杨刚
- * @版本      : 
- * @时间      : 2016/9/15 1:48
  ****************************************************************/
 public class NumToRMB {
     /*数字 正序*/
@@ -176,10 +173,6 @@ public class NumToRMB {
 
     /**
      * @描述 : 获取小数的大写中文格式
-     * @作者 : 杨刚
-     * @时间 : 2016/9/15 3:24
-     * @参数 : null
-     * @版本 : V1.0.0
      */
     private static String getDecimalRMB(String decimal) {
         StringBuilder decimalRMB = new StringBuilder();
@@ -194,10 +187,6 @@ public class NumToRMB {
 
     /**
      * @描述 : 获取四位人民币的中文大写格式
-     * @作者 : 杨刚
-     * @时间 : 2016/9/15 3:24
-     * @参数 : null
-     * @版本 : V1.0.0
      */
     private static String getFourRMB(String fourNum) {
         StringBuilder fourRMB = new StringBuilder();

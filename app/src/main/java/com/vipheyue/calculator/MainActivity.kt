@@ -39,17 +39,12 @@ class MainActivity : AppCompatActivity() {
 //        btn_operator_div.setBackgroundColor()
 //        var mySelectorGrad: GradientDrawable = btn_operator_div.background as GradientDrawable
 //        myGrad.setColor(Color.parseColor("#00ff00"));
-
-//
         var changeBg = ChangeBg()
         changeBg.change(btn_operator_div, this)
         changeBg.change(btn_operator_plus, this)
         changeBg.change(btn_operator_sub, this)
         changeBg.change(btn_operator_add, this)
         changeBg.change(btn_operator_equal, this)
-
-
-
         btn_digital_del.setOnLongClickListener {
             waitCalculateStr = ""
             tv_equation_panel.setText(waitCalculateStr)
@@ -60,20 +55,13 @@ class MainActivity : AppCompatActivity() {
             drawer_layout.openDrawer(GravityCompat.START)
         }
         nav_view.setNavigationItemSelectedListener(MyNavigation())
-
         recyclerView_history.setLayoutManager(LinearLayoutManager(this))
-
-
         val query = realm.where(HistoryTable::class.java)
         val findAll = query.findAll().toList()
-
         dataCenter.addAll(findAll)
         historyAdapter = HistoryAdapter(R.layout.history_item, dataCenter)
-
         recyclerView_history.adapter = historyAdapter
-
         historyAdapter.setOnItemClickListener { adapter, view, position ->
-
             val historyTable = dataCenter.get(position)
             val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val mClipData = ClipData.newPlainText(historyTable.comment, historyTable.result)
@@ -103,7 +91,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
         recyclerView_history.smoothScrollToPosition(dataCenter.size)
-
     }
 
     fun operatorOnClick(view: View) {
@@ -112,7 +99,6 @@ class MainActivity : AppCompatActivity() {
             waitCalculateStr = lastResult
             havedResult = false//新表达式开始 这个表达式还没有结果
         }
-
         waitCalculateStr += symbol
         tv_equation_panel.setText(waitCalculateStr)
     }
@@ -124,7 +110,6 @@ class MainActivity : AppCompatActivity() {
             //计算表达式
             val expression = Expression(waitCalculateStr)
             val result = expression.eval().toPlainString()
-
             //添加 等号 和 结果
             waitCalculateStr += symbol + result
             tv_equation_panel.setText(waitCalculateStr)
@@ -142,15 +127,12 @@ class MainActivity : AppCompatActivity() {
             toast("输入的表达式有问题哦!")
             havedResult = false
         }
-
     }
 
     fun digitalOnClick(view: View) {
         val symbol = (view as Button).text.toString()
-
         if (havedResult) waitCalculateStr = ""//新一轮计算 重置表达式
         havedResult = false //新一轮计算 重置
-
         waitCalculateStr += symbol
         tv_equation_panel.setText(waitCalculateStr)
     }
@@ -158,7 +140,6 @@ class MainActivity : AppCompatActivity() {
     fun delOnclick(view: View) {
         if (havedResult) waitCalculateStr = ""
         havedResult = false
-
         if (waitCalculateStr.isNotEmpty()) waitCalculateStr = waitCalculateStr.substring(0, waitCalculateStr.length - 1)
         tv_equation_panel.setText(waitCalculateStr)
     }
@@ -171,7 +152,6 @@ class MainActivity : AppCompatActivity() {
                     var picker = ColorPicker()
                     picker.pick(this@MainActivity)
                 }
-
                 R.id.nav_expression -> {
                     startActivity<UniversalExpressionActivity>()
                 }
@@ -204,11 +184,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
             drawer_layout.closeDrawer(GravityCompat.START)
             return true
         }
-
     }
 
     override fun onResume() {

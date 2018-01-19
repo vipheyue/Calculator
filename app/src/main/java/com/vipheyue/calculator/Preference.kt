@@ -9,8 +9,6 @@ import kotlin.reflect.KProperty
 //var save : LoginSaveBean by Preference<LoginSaveBean>(App.getInstance(),Constant.LOCAL_SAVE_LOGIN_MODEL_KEY, LoginSaveBean("0","0"))
 //注意 这条语句我们要放在全局变量来读取，当你改变值或者值被改变时，这里的值会自己提交和同步。
 /**
- * author: smart
- * time: 2016/10/26
  * 封装好SharedPreferences 并使用 序列化和反序列化来存储数据
  * 注意要在全局环境使用
  */
