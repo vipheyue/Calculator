@@ -1,4 +1,4 @@
-package com.vipheyue.calculator
+package com.welightworld.calculator
 
 import org.junit.Test
 

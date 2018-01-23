@@ -1,9 +1,10 @@
-package com.vipheyue.calculator
+package com.welightworld.calculator
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.method.ScrollingMovementMethod
 import com.udojava.evalex.Expression
+import com.welightworld.calculator.R.id.*
 import kotlinx.android.synthetic.main.activity_universal_expression.*
 import org.jetbrains.anko.toast
 

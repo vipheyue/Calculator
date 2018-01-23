@@ -1,4 +1,4 @@
-package com.vipheyue.calculator
+package com.welightworld.calculator
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

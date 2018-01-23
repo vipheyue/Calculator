@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">小猫计算器</string>
+    <string name="app_name">智能计算器</string>
     <string name="title_activity_drawer">DrawerActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

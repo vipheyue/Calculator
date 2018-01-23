@@ -1,4 +1,4 @@
-package com.vipheyue.calculator
+package com.welightworld.calculator
 
 import android.content.*
 import android.net.Uri
@@ -162,7 +162,8 @@ class MainActivity : AppCompatActivity() {
                     val results = realm.where(HistoryTable::class.java).findAll()
                     realm.executeTransaction {
                         results.deleteAllFromRealm()
-                        toast("删除成功,重启后生效")
+                        startActivity<MainActivity>()
+                        finish()
                     }
                 }
                 R.id.nav_share -> {

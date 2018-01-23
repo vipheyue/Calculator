@@ -1,16 +1,16 @@
-package com.vipheyue.calculator
+package com.welightworld.calculator
 
-import android.content.Context
+import android.app.Activity
 import android.graphics.Color
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 
 /**
  * Created by heyue on 2018/1/17.
  */
 class ColorPicker {
-    public fun pick( mContext: Context) {
+     fun pick( mContext: Activity) {
             ColorPickerDialogBuilder
                     .with(mContext)
                     .setTitle("设置主页背景")
@@ -19,8 +19,9 @@ class ColorPicker {
                     .density(12)
 //                    .setOnColorSelectedListener { selectedColor -> toast("onColorSelected: 0x" + Integer.toHexString(selectedColor)) }
                     .setPositiveButton("ok") { dialog, selectedColor, allColors ->
-                        mContext.toast("设置成功,下次启动 APP 时生效")
                         configOperatorBgColor = selectedColor
+                        mContext.startActivity<MainActivity>()
+                        mContext.finish()
                     }
                     .setNegativeButton("cancel") { dialog, which -> }
                     .build()

@@ -1,4 +1,4 @@
-package com.vipheyue.calculator
+package com.welightworld.calculator
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
