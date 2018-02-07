@@ -29,7 +29,7 @@ class CategoryActivity : AppCompatActivity() {
         dataCenter.add(CategoryBean(CalculatorEnum.FEEDBACK, getString(R.string.feedback), "", true))
 
         recyclerView_category.setLayoutManager(GridLayoutManager(this, 2))
-        categoryAdapter = CategoryAdapter(R.layout.item_category, dataCenter)
+        categoryAdapter = CategoryAdapter(this,R.layout.item_category, dataCenter)
         recyclerView_category.adapter = categoryAdapter
     }
 

@@ -10,8 +10,12 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 
-class CategoryAdapter(layoutResId: Int, data: List<CategoryBean>?) : BaseQuickAdapter<CategoryBean, BaseViewHolder>(layoutResId, data) {
+class CategoryAdapter : BaseQuickAdapter<CategoryBean, BaseViewHolder> {
+    var mActivity: Activity
 
+    constructor(mActivity: Activity, layoutResId: Int, data: List<CategoryBean>?) : super(layoutResId, data) {
+        this.mActivity = mActivity
+    }
 
     override fun convert(helper: BaseViewHolder, item: CategoryBean) {
         var button = helper.getView<Button>(R.id.button)
@@ -22,15 +26,15 @@ class CategoryAdapter(layoutResId: Int, data: List<CategoryBean>?) : BaseQuickAd
                 CalculatorEnum.SKIN -> {
                     button.setOnClickListener {
                         var picker = ColorPicker()
-                        picker.pick(button.context as Activity)
+                        picker.pick(mActivity)
                     }
                 }
                 CalculatorEnum.SOUND -> {
                     button.setOnClickListener {
                         configOpenSound = !configOpenSound
-                        button.context.toast(button.context.getString(R.string.set_success))
-                        button.context.startActivity<MainActivity>()
-                        var cateActivity = button.context as Activity
+                        mActivity.toast(mActivity.getString(R.string.set_success))
+                        mActivity.startActivity<MainActivity>()
+                        var cateActivity = mActivity
                         cateActivity.finish()
                     }
                 }
@@ -40,8 +44,8 @@ class CategoryAdapter(layoutResId: Int, data: List<CategoryBean>?) : BaseQuickAd
                         val results = realm.where(HistoryTable::class.java).findAll()
                         realm.executeTransaction {
                             results.deleteAllFromRealm()
-                            button.context.startActivity<MainActivity>()
-                            var cateActivity = button.context as Activity
+                            mActivity.startActivity<MainActivity>()
+                            var cateActivity = mActivity
                             cateActivity.finish()
                         }
 
@@ -51,19 +55,19 @@ class CategoryAdapter(layoutResId: Int, data: List<CategoryBean>?) : BaseQuickAd
                     button.setOnClickListener {
                         var textIntent = Intent(Intent.ACTION_SEND)
                         textIntent.setType("text/plain");
-                        textIntent.putExtra(Intent.EXTRA_TEXT, button.context.getString(R.string.share_content))
-                        button.context.startActivity(Intent.createChooser(textIntent, button.context.getString(R.string.app_name)))
+                        textIntent.putExtra(Intent.EXTRA_TEXT, mActivity.getString(R.string.share_content))
+                        mActivity.startActivity(Intent.createChooser(textIntent, mActivity.getString(R.string.app_name)))
                     }
                 }
                 CalculatorEnum.FEEDBACK -> {
                     button.setOnClickListener {
                         val intent = Intent(Intent.ACTION_SEND)
                         intent.type = "text/html"
-                        intent.putExtra(Intent.EXTRA_EMAIL, button.context.getString(R.string.email))
-                        intent.putExtra(Intent.EXTRA_SUBJECT, button.context.getString(R.string.feedback) + button.context.getString(R.string.app_name))
-                        intent.putExtra(Intent.EXTRA_TEXT, button.context.getString(R.string.feedback))
-                        button.context.startActivity(Intent.createChooser(intent, "Send Email"))
-                        button.context.toast("请加入QQ群:469859289 email: " + button.context.getString(R.string.email))
+                        intent.putExtra(Intent.EXTRA_EMAIL, mActivity.getString(R.string.email))
+                        intent.putExtra(Intent.EXTRA_SUBJECT, mActivity.getString(R.string.feedback) + mActivity.getString(R.string.app_name))
+                        intent.putExtra(Intent.EXTRA_TEXT, mActivity.getString(R.string.feedback))
+                        mActivity.startActivity(Intent.createChooser(intent, "Send Email"))
+                        mActivity.toast("请加入QQ群:469859289 email: " + mActivity.getString(R.string.email))
                     }
                 }
 
@@ -72,9 +76,9 @@ class CategoryAdapter(layoutResId: Int, data: List<CategoryBean>?) : BaseQuickAd
         }
         button.setOnClickListener {
             var intent = Intent()
-            intent.setClassName(button.context, item.cls)
-            button.context.startActivity(intent)
-            var cateActivity = button.context as Activity
+            intent.setClassName(mActivity, item.cls)
+            mActivity.startActivity(intent)
+            var cateActivity = mActivity
             cateActivity.finish()
         }
 
