@@ -1,21 +1,20 @@
 package com.welightworld.calculator
 
-import android.content.*
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.DialogInterface
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.udojava.evalex.Expression
 import io.realm.Realm
-import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.app_bar_drawer.*
 import kotlinx.android.synthetic.main.content_drawer.*
 import org.jetbrains.anko.startActivity
@@ -68,7 +67,6 @@ class MainActivity : AppCompatActivity() {
             startActivity<CategoryActivity>()
             finish()
         }
-        nav_view.setNavigationItemSelectedListener(MyNavigation())
         recyclerView_history.setLayoutManager(LinearLayoutManager(this))
         val query = realm.where(HistoryTable::class.java)
         val findAll = query.findAll().toList()
@@ -168,58 +166,6 @@ class MainActivity : AppCompatActivity() {
         tv_equation_panel.setText(waitCalculateStr)
     }
 
-    private inner class MyNavigation() : NavigationView.OnNavigationItemSelectedListener {
-        override fun onNavigationItemSelected(item: MenuItem): Boolean {
-            // Handle navigation view item clicks here.
-            when (item.itemId) {
-                R.id.nav_individual_tax -> {
-                    startActivity<IndividualTaxActivity>()
-                }
-                R.id.nav_change_skin -> {
-                    var picker = ColorPicker()
-                    picker.pick(this@MainActivity)
-                }
-                R.id.nav_expression -> {
-                    startActivity<UniversalExpressionActivity>()
-                }
-                R.id.nav_change_case -> {
-                    startActivity<TraditionalActivity>()
-                }
-                R.id.nav_switch_sound -> {
-                    configOpenSound = !configOpenSound
-                    toast(getString(R.string.set_success))
-                }
-                R.id.nav_history_del -> {
-                    val results = realm.where(HistoryTable::class.java).findAll()
-                    realm.executeTransaction {
-                        results.deleteAllFromRealm()
-                        startActivity<MainActivity>()
-                        finish()
-                    }
-                }
-                R.id.nav_share -> {
-                    var textIntent = Intent(Intent.ACTION_SEND)
-                    textIntent.setType("text/plain");
-                    textIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_content))
-                    startActivity(Intent.createChooser(textIntent, getString(R.string.app_name)))
-                }
-                R.id.nav_feedback -> {
-
-                    val intent = Intent(Intent.ACTION_SEND)
-                    intent.type = "text/html"
-                    intent.putExtra(Intent.EXTRA_EMAIL, getString(R.string.email))
-                    intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback) + getString(R.string.app_name))
-                    intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.feedback))
-                    startActivity(Intent.createChooser(intent, "Send Email"))
-                    toast("请加入QQ群:469859289 email: " + getString(R.string.email))
-
-
-                }
-            }
-            drawer_layout.closeDrawer(GravityCompat.START)
-            return true
-        }
-    }
 
     override fun onResume() {
         super.onResume()
