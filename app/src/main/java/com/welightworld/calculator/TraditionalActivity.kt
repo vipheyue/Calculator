@@ -3,6 +3,7 @@ package com.welightworld.calculator
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_traditional.*
@@ -41,7 +42,12 @@ class TraditionalActivity : AppCompatActivity() {
         }
     }
     override fun onSupportNavigateUp(): Boolean {
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
         return super.onSupportNavigateUp()
+    }
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

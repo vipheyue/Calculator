@@ -16,10 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="www.welightworld.com\n
-欢迎工程师访问官网,发现新世界\n
-重庆如梦极匠科技发展有限公司出品\
-"
+        android:text="@string/menu_header"
         android:textColor="@android:color/white" />
 
     <TextView
@@ -34,6 +31,6 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="QQ群号:469859289" />
+        android:text="@string/contact_information" />
 
 </LinearLayout>

@@ -5,46 +5,50 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_individual_tax"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/salary_tax"
+            android:visible="true" />
+        <item
             android:id="@+id/nav_change_skin"
             android:icon="@drawable/ic_menu_camera"
-            android:title="换肤" />
-        <item
-            android:id="@+id/nav_sound"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="按键音"
-            android:visible="false" />
+            android:title="@string/skin" />
+
         <item
             android:id="@+id/nav_expression"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="万能表达式" />
+            android:title="@string/universal_expression" />
         <item
             android:id="@+id/nav_change_case"
             android:icon="@drawable/ic_menu_manage"
-            android:title="大写人民币" />
+            android:title="@string/Capital_RMB" />
+        <item
+            android:id="@+id/nav_switch_sound"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/open_close_sound" />
         <item
             android:id="@+id/nav_history_del"
             android:icon="@drawable/ic_menu_history_del"
-            android:title="清理历史记录"
+            android:title="@string/clean_History"
             />
     </group>
 
-    <item android:title="智能剪切板,复制后自动识别">
+    <item android:title="@string/tip_menu_copy">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="分享" />
+                android:title="@string/share" />
             <item
                 android:id="@+id/nav_relatives"
                 android:icon="@drawable/ic_menu_share"
-                android:title="亲戚计算器"
+                android:title="@string/Family_relationships"
                 android:visible="false" />
-
 
             <item
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_menu_send"
-                android:title="意见反馈" />
+                android:title="@string/feedback" />
         </menu>
     </item>
 

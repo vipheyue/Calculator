@@ -1,7 +1,8 @@
 package com.welightworld.calculator
 
 import android.content.*
-import android.net.Uri
+import android.media.AudioManager
+import android.media.SoundPool
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -28,17 +29,28 @@ class MainActivity : AppCompatActivity() {
     var dataCenter = ArrayList<HistoryTable>()
     val realm = Realm.getDefaultInstance() // opens "myrealm.realm"
     lateinit var historyAdapter: HistoryAdapter
+    lateinit var mSoundPool: SoundPool
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawer)
         initView()
+
     }
 
     private fun initView() {
-        //button 皮肤颜色
-//        btn_operator_div.setBackgroundColor()
-//        var mySelectorGrad: GradientDrawable = btn_operator_div.background as GradientDrawable
-//        myGrad.setColor(Color.parseColor("#00ff00"));
+        mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        var piano_1 = mSoundPool.load(this, R.raw.piano_1, 1)
+        var piano_2 = mSoundPool.load(this, R.raw.piano_2, 1)
+        var piano_3 = mSoundPool.load(this, R.raw.piano_3, 1)
+        var piano_4 = mSoundPool.load(this, R.raw.piano_4, 1)
+        var piano_5 = mSoundPool.load(this, R.raw.piano_5, 1)
+        var piano_6 = mSoundPool.load(this, R.raw.piano_6, 1)
+        var piano_7 = mSoundPool.load(this, R.raw.piano_7, 1)
+        var piano_8 = mSoundPool.load(this, R.raw.piano_8, 1)
+        var piano_9 = mSoundPool.load(this, R.raw.piano_9, 1)
+        var piano_10 = mSoundPool.load(this, R.raw.piano_0, 1)
+        var piano_c = mSoundPool.load(this, R.raw.piano_c, 1)
         var changeBg = ChangeBg()
         changeBg.change(btn_operator_div, this)
         changeBg.change(btn_operator_plus, this)
@@ -52,7 +64,9 @@ class MainActivity : AppCompatActivity() {
             true
         }
         fab.setOnClickListener { view ->
-            drawer_layout.openDrawer(GravityCompat.START)
+            //            drawer_layout.openDrawer(GravityCompat.START)
+            startActivity<CategoryActivity>()
+            finish()
         }
         nav_view.setNavigationItemSelectedListener(MyNavigation())
         recyclerView_history.setLayoutManager(LinearLayoutManager(this))
@@ -66,16 +80,16 @@ class MainActivity : AppCompatActivity() {
             val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val mClipData = ClipData.newPlainText(historyTable.comment, historyTable.result)
             cm.primaryClip = mClipData
-            toast("复制成功---> " + historyTable.result)
+            toast(getString(R.string.copy_success) + historyTable.result)
         }
         historyAdapter.setOnItemLongClickListener { adapter, view, position ->
-            val builder = AlertDialog.Builder(this).setTitle("设置备注")
+            val builder = AlertDialog.Builder(this).setTitle(getString(R.string.set_remark))
 
             val inflater = getLayoutInflater()
             var view = inflater.inflate(R.layout.add_remark, null)
             var et_remark = view.findViewById<EditText>(R.id.et_remark)
             builder.setView(view)
-                    .setPositiveButton("添加备注", DialogInterface.OnClickListener { dialog, id ->
+                    .setPositiveButton(getString(R.string.set_remark), DialogInterface.OnClickListener { dialog, id ->
                         //存入数据库
                         realm.beginTransaction()
                         val historyTable = HistoryTable(dataCenter.get(position).result)
@@ -85,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                         historyAdapter.addData(historyTable)
                         recyclerView_history.smoothScrollToPosition(dataCenter.size)
                     })
-                    .setNegativeButton("取消", DialogInterface.OnClickListener { dialog, id -> })
+                    .setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id -> })
             builder.create().show()
 
             true
@@ -124,7 +138,7 @@ class MainActivity : AppCompatActivity() {
             historyAdapter.addData(historyTable)
             recyclerView_history.smoothScrollToPosition(dataCenter.size)
         } catch (e: Exception) {
-            toast("输入的表达式有问题哦!")
+            toast(getString(R.string.toast_calculate_problem))
             havedResult = false
         }
     }
@@ -135,7 +149,17 @@ class MainActivity : AppCompatActivity() {
         havedResult = false //新一轮计算 重置
         waitCalculateStr += symbol
         tv_equation_panel.setText(waitCalculateStr)
+
+        createNewSoundPool(symbol)
+
     }
+
+    private fun createNewSoundPool(symbol: String) {
+        if (configOpenSound && symbol.toCharArray()[0].isDigit()) {
+            mSoundPool?.play(symbol.toCharArray()[0].toString().toInt(), 1f, 1f, 0, 0, 1f)
+        }
+    }
+
 
     fun delOnclick(view: View) {
         if (havedResult) waitCalculateStr = ""
@@ -148,6 +172,9 @@ class MainActivity : AppCompatActivity() {
         override fun onNavigationItemSelected(item: MenuItem): Boolean {
             // Handle navigation view item clicks here.
             when (item.itemId) {
+                R.id.nav_individual_tax -> {
+                    startActivity<IndividualTaxActivity>()
+                }
                 R.id.nav_change_skin -> {
                     var picker = ColorPicker()
                     picker.pick(this@MainActivity)
@@ -158,6 +185,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_change_case -> {
                     startActivity<TraditionalActivity>()
                 }
+                R.id.nav_switch_sound -> {
+                    configOpenSound = !configOpenSound
+                    toast(getString(R.string.set_success))
+                }
                 R.id.nav_history_del -> {
                     val results = realm.where(HistoryTable::class.java).findAll()
                     realm.executeTransaction {
@@ -167,22 +198,22 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 R.id.nav_share -> {
-                    try {
-                        val url = "http://calculator.welightworld.com"
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-                        toast("请加入QQ群:469859289")
-                    } catch (e: Exception) {
-                        toast("请加入QQ群:469859289")
-                    }
+                    var textIntent = Intent(Intent.ACTION_SEND)
+                    textIntent.setType("text/plain");
+                    textIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_content))
+                    startActivity(Intent.createChooser(textIntent, getString(R.string.app_name)))
                 }
                 R.id.nav_feedback -> {
-                    try {
-                        val url = "https://jq.qq.com/?_wv=1027&k=5mvN2Tr"
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-                        toast("请加入QQ群:469859289")
-                    } catch (e: Exception) {
-                        toast("请加入QQ群:469859289")
-                    }
+
+                    val intent = Intent(Intent.ACTION_SEND)
+                    intent.type = "text/html"
+                    intent.putExtra(Intent.EXTRA_EMAIL, getString(R.string.email))
+                    intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback) + getString(R.string.app_name))
+                    intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.feedback))
+                    startActivity(Intent.createChooser(intent, "Send Email"))
+                    toast("请加入QQ群:469859289 email: " + getString(R.string.email))
+
+
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -197,6 +228,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         realm.close()
+        mSoundPool.release()
         super.onDestroy()
     }
 }

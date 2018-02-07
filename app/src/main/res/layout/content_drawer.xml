@@ -59,7 +59,7 @@
         android:layout_height="0dp"
         android:fontFamily="casual"
         android:onClick="delOnclick"
-        android:text="删除"
+        android:text="@string/digital_del"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_digital_7"
         app:layout_constraintEnd_toStartOf="@+id/btn_digital_parenthesis_left"

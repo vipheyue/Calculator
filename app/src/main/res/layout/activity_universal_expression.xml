@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="请输入表达式"
+        android:hint="@string/tip_input_experssion"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/operator_bg"
-            android:text="清空"
+            android:text="@string/digital_del"
             android:textColor="@android:color/white"
             />
     </LinearLayout>
@@ -78,7 +78,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:padding="8dp"
-        android:text="结果将在这儿显示"
+        android:text="@string/tip_hint_result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_contain" />
@@ -95,39 +95,7 @@
         android:layout_marginTop="8dp"
         android:scrollbars="vertical"
         android:singleLine="false"
-        android:text="
-+	加法运算符\n
--	减法运算符\n
-*	乘法运算符\n
-/	除法运算符\n
-％	求余运算符\n
-^	多次运算符\n
-
-log（表达式）	返回表达式的自然对数（基数e）\n
-log10（表达式）	返回表达式的常用对数（基数10）\n
-sqrt（表达式）	返回表达式的平方根\n
-sin（表达式）	返回角度的三角正弦（以度为单位）\n
-cos（表达式）	返回角度的三角余弦（以度为单位）\n
-tan（表达式）	返回角度的三角形（以度为单位）\n
-cot（表达式）	返回角度的三角形cotangens（以度为单位）\n
-asin（表达式）	返回asin的角度（以度为单位）\n
-acos（表达式）	返回角度（以度为单位）\n
-atan（表达式）	返回atan的角度（以度为单位）\n
-acot（表达式）	返回acot的角度（以度为单位）\n
-atan2（y，x）	返回atan2的角度（度）\n
-sinh（表达式）	返回值的双曲正弦值\n
-cosh（表达式）	返回值的双曲余弦\n
-tanh（表达式）	返回值的双曲线\n
-coth（表达式）	返回值的双曲形cotangens\n
-sec（表达式）	返回割线（以度为单位）\n
-csc（表达式）	返回同事（度）\n
-sech（表达式）	返回双曲正割（度）\n
-csch（表达式）	返回双曲余割（以度为单位）\n
-asinh（表达式）	返回双曲正弦的角度（以度为单位）\n
-acosh（表达）	返回双曲余弦的角度（以度为单位）\n
-atanh（表达式）	返回值的双曲线的角度\n
-rad（表达式）	将以度数度量的角度转换为以弧度测量的近似等效角度\n
-deg（表达式）	将以弧度度量的角度转换为以度数度量的近似等效角度\n"
+        android:text="@string/universal_describe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -60,9 +60,7 @@ class DrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.nav_change_skin -> {
                 // Handle the camera action
             }
-            R.id.nav_sound -> {
 
-            }
             R.id.nav_expression -> {
 
             }

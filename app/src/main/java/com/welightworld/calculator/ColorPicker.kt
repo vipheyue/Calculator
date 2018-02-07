@@ -13,17 +13,17 @@ class ColorPicker {
      fun pick( mContext: Activity) {
             ColorPickerDialogBuilder
                     .with(mContext)
-                    .setTitle("设置主页背景")
+                    .setTitle(mContext.getString(R.string.title_change_color))
                     .initialColor(Color.parseColor("#FFFFFF"))
                     .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
                     .density(12)
 //                    .setOnColorSelectedListener { selectedColor -> toast("onColorSelected: 0x" + Integer.toHexString(selectedColor)) }
-                    .setPositiveButton("ok") { dialog, selectedColor, allColors ->
+                    .setPositiveButton(mContext.getString(R.string.ok)) { dialog, selectedColor, allColors ->
                         configOperatorBgColor = selectedColor
                         mContext.startActivity<MainActivity>()
                         mContext.finish()
                     }
-                    .setNegativeButton("cancel") { dialog, which -> }
+                    .setNegativeButton(mContext.getString(R.string. cancel)) { dialog, which -> }
                     .build()
                     .show()
     }

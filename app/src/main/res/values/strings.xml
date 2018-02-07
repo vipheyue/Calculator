@@ -1,9 +1,86 @@
 <resources>
-    <string name="app_name">智能计算器</string>
+    <string name="app_name">Smart Calculator</string>
     <string name="title_activity_drawer">DrawerActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="digital_del">Del</string>
+    <string name="copy_success">copy success:</string>
+    <string name="set_remark">set remark</string>
+    <string name="cancel">cancel</string>
+    <string name="toast_calculate_problem">The input expression has a problem!</string>
+    <string name="skin">skin</string>
+    <string name="keytone">keytone</string>
+    <string name="universal_expression">universal expression</string>
+    <string name="Capital_RMB">Capital RMB</string>
+    <string name="clean_History">clean History</string>
+    <string name="share">share</string>
+    <string name="Family_relationships">Family relationships</string>
+    <string name="feedback">feedback</string>
+    <string name="title_change_color">Set the page background</string>
+    <string name="ok">ok</string>
+    <string name="universal_describe">Operator	Description \n
++		Additive operator / Unary plus \n
+-		Subtraction operator / Unary minus \n
+*		Multiplication operator, can be omitted in front of an open bracket \n
+/		Division operator \n
+%		Remainder operator (Modulo) \n
+^		Power operator \n
+NOT(expression)		Boolean negation, 1 (means true) if the expression is not zero \n
+IF(condition,value_if_true,value_if_false)		Returns one value if the condition evaluates to true or the other if it evaluates to false \n
+RANDOM()		Produces a random number between 0 and 1 \n
+MIN(e1,e2, ...)		Returns the smallest of the given expressions \n
+MAX(e1,e2, ...)		Returns the biggest of the given expressions \n
+ABS(expression)		Returns the absolute (non-negative) value of the expression \n
+ROUND(expression,precision)		Rounds a value to a certain number of digits, uses the current rounding mode \n
+FLOOR(expression)		Rounds the value down to the nearest integer \n
+CEILING(expression)		Rounds the value up to the nearest integer \n
+LOG(expression)		Returns the natural logarithm (base e) of an expression \n
+LOG10(expression)	Returns the common logarithm (base 10) of an expression \n
+SQRT(expression)	Returns the square root of an expression \n
+SIN(expression)		Returns the trigonometric sine of an angle (in degrees) \n
+COS(expression)		Returns the trigonometric cosine of an angle (in degrees) \n
+TAN(expression)		Returns the trigonometric tangens of an angle (in degrees) \n
+COT(expression)		Returns the trigonometric cotangens of an angle (in degrees) \n
+ASIN(expression)	Returns the angle of asin (in degrees) \n
+ACOS(expression)	Returns the angle of acos (in degrees) \n
+ATAN(expression)	Returns the angle of atan (in degrees) \n
+ACOT(expression)	Returns the angle of acot (in degrees) \n
+ATAN2(y,x)		Returns the angle of atan2 (in degrees) \n
+SINH(expression)		Returns the hyperbolic sine of a value \n
+COSH(expression)		Returns the hyperbolic cosine of a value \n
+TANH(expression)		Returns the hyperbolic tangens of a value \n
+COTH(expression)		Returns the hyperbolic cotangens of a value \n
+SEC(expression)		Returns the secant (in degrees) \n
+CSC(expression)		Returns the cosecant (in degrees) \n
+SECH(expression)		Returns the hyperbolic secant (in degrees) \n
+CSCH(expression)		Returns the hyperbolic cosecant (in degrees) \n
+ASINH(expression)		Returns the angle of hyperbolic sine (in degrees) \n
+ACOSH(expression)		Returns the angle of hyperbolic cosine (in degrees) \n
+ATANH(expression)		Returns the angle of hyperbolic tangens of a value \n
+RAD(expression)		Converts an angle measured in degrees to an approximately equivalent angle measured in radians \n
+DEG(expression)		Converts an angle measured in radians to an approximately equivalent angle measured in degrees \n</string>
+    <string name="tip_hint_result">The results will show here</string>
+    <string name="tip_input_experssion">Please enter the expression</string>
+    <string name="tip_menu_copy">Automatic identification after copying</string>
+    <string name="menu_header">www.welightworld.com\n  Rumengjijiang Technology  Co., Ltd\n</string>
+    <string name="contact_information">email:vipheyue@foxmail.com</string>
+    <string name="share_content">Please copy the following content to the browser open \n  \n http://heyue.oss-cn-hangzhou.aliyuncs.com/AppData/Calculator/app-release.apk</string>
+    <string name="email">vipheyue@foxmail.com</string>
+    <string name="open_close_sound">open/close sound</string>
+    <string name="set_success">set success</string>
+    <string name="calculate">calculate</string>
+    <string name="tip_input_salary">Please enter your salary</string>
+    <string name="salary_tax">salary tax</string>
+    <string name="should_tax">Should pay tax:</string>
+    <string name="welfare">other social insurance(individual pay part)</string>
+    <string name="getHandSalary">Directly get money :</string>
+    <string name="tip_result_show">The result will be here</string>
+    <string name="normal_cal">normal calculator</string>
+    <string name="house_debt_cal">house calculator</string>
+    <string name="year_end_bonus">year end bonus</string>
+    <string name="input_year_bound">input year bound</string>
+
 </resources>
