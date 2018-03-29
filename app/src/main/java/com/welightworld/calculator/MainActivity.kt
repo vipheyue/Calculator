@@ -21,6 +21,8 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 
+
+
 class MainActivity : AppCompatActivity() {
     var waitCalculateStr: String = ""
     var havedResult: Boolean = false
@@ -81,23 +83,37 @@ class MainActivity : AppCompatActivity() {
             toast(getString(R.string.copy_success) + historyTable.result)
         }
         historyAdapter.setOnItemLongClickListener { adapter, view, position ->
-            val builder = AlertDialog.Builder(this).setTitle(getString(R.string.set_remark))
+            val builder = AlertDialog.Builder(this).setTitle(getString(R.string.tip_dele))
 
             val inflater = getLayoutInflater()
             var view = inflater.inflate(R.layout.add_remark, null)
             var et_remark = view.findViewById<EditText>(R.id.et_remark)
             builder.setView(view)
-                    .setPositiveButton(getString(R.string.set_remark), DialogInterface.OnClickListener { dialog, id ->
-                        //存入数据库
-                        realm.beginTransaction()
-                        val historyTable = HistoryTable(dataCenter.get(position).result)
-                        historyTable.comment = et_remark.text.toString().trim()
-                        val realmUser = realm.copyToRealm(historyTable)
-                        realm.commitTransaction()
-                        historyAdapter.addData(historyTable)
+                    .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, id ->
+                        //从数据库中删除
+//                        realm.beginTransaction()
+                        var waitDealObj=realm.where(HistoryTable::class.java).equalTo("result", dataCenter.get(position).result).findFirst()
+                        realm.executeTransaction {
+                            waitDealObj?.deleteFromRealm()
+                        }
+//                        val delhistoryTable = HistoryTable(dataCenter.get(position).result)
+//                        dataCenter.get(position).deleteFromRealm()
+
+                        historyAdapter.remove(position)
+//                        realm.commitTransaction()
                         recyclerView_history.smoothScrollToPosition(dataCenter.size)
+
+
+                        //存入数据库
+//                        realm.beginTransaction()
+//                        val historyTable = HistoryTable(dataCenter.get(position).result)
+//                        historyTable.comment = et_remark.text.toString().trim()
+//                        val realmUser = realm.copyToRealm(historyTable)
+//                        realm.commitTransaction()
+//                        historyAdapter.addData(historyTable)
+//                        recyclerView_history.smoothScrollToPosition(dataCenter.size)
                     })
-                    .setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, id -> })
+
             builder.create().show()
 
             true

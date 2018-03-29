@@ -17,10 +17,10 @@ class CategoryActivity : AppCompatActivity() {
 
     private fun initView() {
         dataCenter.add(CategoryBean(CalculatorEnum.NORMAL,getString(R.string.normal_cal), MainActivity::class.java.name))
-        dataCenter.add(CategoryBean(CalculatorEnum.HOUSE, getString(R.string.house_debt_cal), HouseTaxActivity::class.java.name))
+//        dataCenter.add(CategoryBean(CalculatorEnum.HOUSE, getString(R.string.house_debt_cal), HouseTaxActivity::class.java.name))
         dataCenter.add(CategoryBean(CalculatorEnum.SALARY, getString(R.string.salary_tax), IndividualTaxActivity::class.java.name))
-        dataCenter.add(CategoryBean(CalculatorEnum.YEARBONUS, getString(R.string.year_end_bonus), YearBonusActivity::class.java.name))
-        dataCenter.add(CategoryBean(CalculatorEnum.UNIVERSAL, getString(R.string.universal_expression), UniversalExpressionActivity::class.java.name))
+//        dataCenter.add(CategoryBean(CalculatorEnum.YEARBONUS, getString(R.string.year_end_bonus), YearBonusActivity::class.java.name))
+//        dataCenter.add(CategoryBean(CalculatorEnum.UNIVERSAL, getString(R.string.universal_expression), UniversalExpressionActivity::class.java.name))
         dataCenter.add(CategoryBean(CalculatorEnum.CAPITAL, getString(R.string.Capital_RMB), TraditionalActivity::class.java.name))
         dataCenter.add(CategoryBean(CalculatorEnum.SKIN, getString(R.string.skin), "", true))
         dataCenter.add(CategoryBean(CalculatorEnum.SOUND, getString(R.string.open_close_sound), "", true))

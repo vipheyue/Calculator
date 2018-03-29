@@ -6,6 +6,7 @@
     <EditText
         android:id="@+id/et_remark"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="请输入备注名" />

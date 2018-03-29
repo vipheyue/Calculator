@@ -9,6 +9,7 @@
     <string name="digital_del">Del</string>
     <string name="copy_success">copy success:</string>
     <string name="set_remark">set remark</string>
+    <string name="tip_dele">deletion</string>
     <string name="cancel">cancel</string>
     <string name="toast_calculate_problem">The input expression has a problem!</string>
     <string name="skin">skin</string>
