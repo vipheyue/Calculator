@@ -14,6 +14,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.udojava.evalex.Expression
+import com.welightworld.calculator.calc.UniversalFragment
+import com.welightworld.calculator.calc.UniversalPresent
 import io.realm.Realm
 import kotlinx.android.synthetic.main.app_bar_drawer.*
 import kotlinx.android.synthetic.main.content_drawer.*
@@ -40,6 +42,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        //创建 MVP 关系
+
+        var universalFragment = UniversalFragment()
+        var universalPresent = UniversalPresent(universalFragment)
+
         mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         var piano_1 = mSoundPool.load(this, R.raw.piano_1, 1)
         var piano_2 = mSoundPool.load(this, R.raw.piano_2, 1)

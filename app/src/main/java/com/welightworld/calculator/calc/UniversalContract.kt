@@ -14,10 +14,28 @@
  * limitations under the License.
  */
 
-package com.welightworld.calculator.base;
+package com.welightworld.calculator.calc
 
-public interface BaseView<T extends BasePresenter> {
+import com.example.android.architecture.blueprints.todoapp.BasePresenter
+import com.example.android.architecture.blueprints.todoapp.BaseView
 
-    void setPresenter(T presenter);
 
+/**
+ * This specifies the contract between the view and the presenter.
+ */
+interface UniversalContract {
+
+    interface View : BaseView<Presenter> {
+
+
+        fun toastMsg(msg: String)
+
+        fun showSuccessDialog()
+
+    }
+
+    interface Presenter : BasePresenter {
+
+        fun calcResult(express: String)
+    }
 }

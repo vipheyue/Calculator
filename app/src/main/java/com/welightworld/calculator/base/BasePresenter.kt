@@ -1,5 +1,5 @@
 /*
- * Copyright 2016, The Android Open Source Project
+ * Copyright 2017, The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.welightworld.calculator.base;
+package com.example.android.architecture.blueprints.todoapp
 
-public interface BasePresenter {
+interface BasePresenter {
 
-    void start();
+    fun start()
 
 }
