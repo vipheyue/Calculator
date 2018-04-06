@@ -24,11 +24,14 @@ class CategoryActivity : AppCompatActivity() {
         dataCenter.add(CategoryBean(CalculatorEnum.CAPITAL, getString(R.string.Capital_RMB), TraditionalActivity::class.java.name))
         dataCenter.add(CategoryBean(CalculatorEnum.SKIN, getString(R.string.skin), "", true))
         dataCenter.add(CategoryBean(CalculatorEnum.SOUND, getString(R.string.open_close_sound), "", true))
+//        dataCenter.add(CategoryBean(CalculatorEnum.SOUND, getString(R.string.open_close_sound), TonesActivity::class.java.name))
+
+
         dataCenter.add(CategoryBean(CalculatorEnum.CLEAN, getString(R.string.clean_History), "", true))
         dataCenter.add(CategoryBean(CalculatorEnum.SHARE, getString(R.string.share), "", true))
         dataCenter.add(CategoryBean(CalculatorEnum.FEEDBACK, getString(R.string.feedback), "", true))
 
-        recyclerView_category.setLayoutManager(GridLayoutManager(this, 2))
+        recyclerView_category.setLayoutManager(GridLayoutManager(this, 1))
         categoryAdapter = CategoryAdapter(this,R.layout.item_category, dataCenter)
         recyclerView_category.adapter = categoryAdapter
     }

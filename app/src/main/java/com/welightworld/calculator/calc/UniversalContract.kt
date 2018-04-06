@@ -51,8 +51,8 @@ interface UniversalContract {
         fun delOneInput()
         fun clearInput()
         fun calcResult()
-
         fun copyResult()
         fun removeItem(dataId: String, position: Int)
+        fun pasteExpress(express:String)
     }
 }

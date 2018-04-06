@@ -4,8 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import com.udojava.evalex.Expression
-import com.welightworld.calculator.db.HistoryTable
-import io.realm.Realm
+import com.welightworld.calculator.db.DataBaseRepository
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
 import java.util.regex.Pattern
@@ -39,11 +38,7 @@ object ClipboardManagerHelper {
                     var messageResult = waitCalculateStr + "=" + result
 
                     //存入数据库
-                    val realm = Realm.getDefaultInstance() // opens "myrealm.realm"
-                    realm.beginTransaction()
-                    val historyTable = HistoryTable(messageResult,System.currentTimeMillis())
-                    val realmUser = realm.copyToRealm(historyTable)
-                    realm.commitTransaction()
+                    DataBaseRepository().saveItem(messageResult)
 
                     //弹框 (退出应用,留在应用)
                     mContext.alert(messageResult, "自动识计算结果") {
@@ -84,5 +79,12 @@ object ClipboardManagerHelper {
         val regex = ".*[a-zA-Z]+.*"
         val m = Pattern.compile(regex).matcher(cardNum)
         return m.matches()
+    }
+
+    fun copy2Clipboard(mContext: Context, str: String) {
+        val cm = mContext?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val mClipData = ClipData.newPlainText("calculator", str)
+        cm.primaryClip = mClipData
+        mContext!!.toast(mContext.getString(R.string.copy_success) + str)
     }
 }

@@ -1,9 +1,10 @@
 package com.welightworld.calculator.calc
 
 
-import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.media.AudioManager
+import android.media.SoundPool
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -11,10 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.welightworld.calculator.ChangeBg
-import com.welightworld.calculator.ClipboardManagerHelper
-import com.welightworld.calculator.HistoryAdapter
-import com.welightworld.calculator.R
+import com.welightworld.calculator.*
 import com.welightworld.calculator.db.HistoryTable
 import kotlinx.android.synthetic.main.content_drawer.*
 import org.jetbrains.anko.toast
@@ -26,6 +24,7 @@ import org.jetbrains.anko.toast
 class UniversalFragment : Fragment(), UniversalContract.View {
     override lateinit var presenter: UniversalContract.Presenter
     lateinit var historyAdapter: HistoryAdapter
+    lateinit var mSoundPool: SoundPool
 
     override fun addItem(table: HistoryTable) {
         historyAdapter.addData(table)
@@ -82,7 +81,22 @@ class UniversalFragment : Fragment(), UniversalContract.View {
     }
 
     private fun initView() {
+        tv_equation_panel.setOnClickListener {
+            activity?.let { it1 -> ClipboardManagerHelper.copy2Clipboard(it1, tv_equation_panel.text.toString()) }
+        }
+        tv_equation_panel.setOnLongClickListener {
+            if (tv_equation_panel.text.toString().isEmpty()) {
+                //获取 剪切板
+                val cm = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val copyText = cm.primaryClip?.getItemAt(0)?.text
+                tv_equation_panel.setText(copyText)
+                presenter.pasteExpress(copyText.toString())
+            } else {
+                activity?.let { it1 -> ClipboardManagerHelper.copy2Clipboard(it1, tv_equation_panel.text.toString()) }
+            }
 
+            return@setOnLongClickListener true
+        }
         btn_digital_del.setOnLongClickListener {
             presenter.clearInput()
             return@setOnLongClickListener true
@@ -90,6 +104,7 @@ class UniversalFragment : Fragment(), UniversalContract.View {
         var digitalClickListener: View.OnClickListener = View.OnClickListener { view ->
             val symbol = (view as Button).text.toString()
             presenter.inputDigital(symbol)
+            createNewSoundPool(symbol)
             return@OnClickListener
 //        createNewSoundPool(symbol)
         }
@@ -135,23 +150,40 @@ class UniversalFragment : Fragment(), UniversalContract.View {
 
         historyAdapter.setOnItemClickListener { adapter, view, position ->
             val historyTable = historyAdapter.getItem(position)
-            val cm = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val mClipData = ClipData.newPlainText(historyTable?.comment, historyTable?.result)
-            cm.primaryClip = mClipData
-            activity!!.toast(getString(R.string.copy_success) + historyTable?.result)
+            historyTable?.result?.let { activity?.let { it1 -> ClipboardManagerHelper.copy2Clipboard(it1, it) } }
         }
 
 
         historyAdapter.setOnItemLongClickListener { adapter, view, position ->
 
 
-            var dataId:String = historyAdapter.data.get(position).id
-            presenter.removeItem(dataId,position)
-
+            var itemData = historyAdapter.data.get(position)
+            var dataId: String = itemData.id
+            activity?.let { it1 -> ClipboardManagerHelper.copy2Clipboard(it1, itemData.result) }
+            presenter.removeItem(dataId, position)
             true
         }
 
         recyclerView_history.smoothScrollToPosition(historyAdapter.data.size)
+
+        mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        var piano_1 = mSoundPool.load(activity, R.raw.piano_1, 1)
+//        var piano_2 = mSoundPool.load(activity, R.raw.piano_2, 1)
+//        var piano_3 = mSoundPool.load(activity, R.raw.piano_3, 1)
+//        var piano_4 = mSoundPool.load(activity, R.raw.piano_4, 1)
+//        var piano_5 = mSoundPool.load(activity, R.raw.piano_5, 1)
+//        var piano_6 = mSoundPool.load(activity, R.raw.piano_6, 1)
+//        var piano_7 = mSoundPool.load(activity, R.raw.piano_7, 1)
+//        var piano_8 = mSoundPool.load(activity, R.raw.piano_8, 1)
+//        var piano_9 = mSoundPool.load(activity, R.raw.piano_9, 1)
+//        var piano_10 = mSoundPool.load(activity, R.raw.piano_0, 1)
+//        var piano_c = mSoundPool.load(activity, R.raw.piano_c, 1)
+    }
+
+    private fun createNewSoundPool(symbol: String) {
+        if (configOpenSound && symbol.toCharArray()[0].isDigit()) {
+            mSoundPool.play(symbol.toCharArray()[0].toString().toInt(), 1f, 1f, 0, 0, 1f)
+        }
     }
 
     override fun onResume() {
@@ -161,7 +193,7 @@ class UniversalFragment : Fragment(), UniversalContract.View {
     }
 
     override fun onDestroy() {
-//        mSoundPool.release()
+        mSoundPool.release()
         super.onDestroy()
     }
 

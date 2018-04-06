@@ -1,10 +1,9 @@
 package com.welightworld.calculator.db
 
-import android.content.Context
 import io.realm.Realm
 
 
-class DataBaseRepository(mContext: Context) : IDataBaseSource {
+class DataBaseRepository : IDataBaseSource {
     override fun deleItem(itemId: String): Boolean {
         //从数据库中删除
         realm.executeTransaction {

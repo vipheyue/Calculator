@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".UniversalExpressionActivity" />
         <activity android:name=".TraditionalActivity" />
         <!--
@@ -39,7 +38,17 @@
         <activity android:name=".IndividualTaxActivity" />
         <activity android:name=".HouseTaxActivity" />
         <activity android:name=".CategoryActivity" />
-        <activity android:name=".YearBonusActivity"></activity>
+        <activity android:name=".YearBonusActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".TonesActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

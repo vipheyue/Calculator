@@ -65,7 +65,7 @@ deg（表达式）	将以弧度度量的角度转换为以度数度量的近似�
     <string name="share_content">请复制以下内容到浏览器打开 \n \n
         http://heyue.oss-cn-hangzhou.aliyuncs.com/AppData/Calculator/app-release.apk</string>
     <string name="email">vipheyue@foxmail.com</string>
-    <string name="open_close_sound">开/关 音效</string>
+    <string name="open_close_sound">音效</string>
     <string name="set_success">设置成功</string>
     <string name="calculate">计算</string>
     <string name="tip_input_salary">请输入你的工资</string>

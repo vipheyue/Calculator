@@ -9,6 +9,7 @@ import com.welightworld.calculator.db.IDataBaseSource
  */
 class UniversalPresent(var dataRepository: IDataBaseSource, val universalView: UniversalContract.View) : UniversalContract.Presenter {
 
+
     init {
         universalView.presenter = this
     }
@@ -88,5 +89,9 @@ class UniversalPresent(var dataRepository: IDataBaseSource, val universalView: U
         universalView.removeItem(position)
     }
 
-
+    override fun pasteExpress(express: String) {
+        waitCalSB.setLength(0)
+        waitCalSB.append(express)
+        havedResult = false
+    }
 }
