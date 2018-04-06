@@ -41,7 +41,7 @@ object ClipboardManagerHelper {
                     //存入数据库
                     val realm = Realm.getDefaultInstance() // opens "myrealm.realm"
                     realm.beginTransaction()
-                    val historyTable = HistoryTable(messageResult)
+                    val historyTable = HistoryTable(messageResult,System.currentTimeMillis())
                     val realmUser = realm.copyToRealm(historyTable)
                     realm.commitTransaction()
 

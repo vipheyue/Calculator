@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onDestroy() {
-        mSoundPool.release()
+//        mSoundPool.release()
         super.onDestroy()
     }
 }

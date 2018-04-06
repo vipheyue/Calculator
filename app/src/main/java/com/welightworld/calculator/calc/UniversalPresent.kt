@@ -28,7 +28,7 @@ class UniversalPresent(var dataRepository: IDataBaseSource, val universalView: U
             havedResult = false //新一轮计算 重置
         }
         waitCalSB.append(digitalNum)
-        universalView.setInputPlaneValue(waitCalSB.toString(),havedResult)
+        universalView.setInputPlaneValue(waitCalSB.toString(), havedResult)
     }
 
     override fun inputOperator(operator: String) {
@@ -38,7 +38,7 @@ class UniversalPresent(var dataRepository: IDataBaseSource, val universalView: U
             havedResult = false//新表达式开始 这个表达式还没有结果
         }
         waitCalSB.append(operator)
-        universalView.setInputPlaneValue(waitCalSB.toString(),havedResult)
+        universalView.setInputPlaneValue(waitCalSB.toString(), havedResult)
     }
 
     override fun delOneInput() {
@@ -48,14 +48,14 @@ class UniversalPresent(var dataRepository: IDataBaseSource, val universalView: U
         }
         if (waitCalSB.isNotEmpty()) {
             waitCalSB.deleteCharAt(waitCalSB.length - 1)
-            universalView.setInputPlaneValue(waitCalSB.toString(),havedResult)
+            universalView.setInputPlaneValue(waitCalSB.toString(), havedResult)
         }
     }
 
     override fun clearInput() {
         waitCalSB.setLength(0)
         havedResult = false
-        universalView.setInputPlaneValue(waitCalSB.toString(),havedResult)
+        universalView.setInputPlaneValue(waitCalSB.toString(), havedResult)
 
     }
 
@@ -67,7 +67,7 @@ class UniversalPresent(var dataRepository: IDataBaseSource, val universalView: U
             waitCalSB.append("=")
             waitCalSB.append(lastResult)
             havedResult = true
-            universalView.setInputPlaneValue(waitCalSB.toString(),havedResult)
+            universalView.setInputPlaneValue(waitCalSB.toString(), havedResult)
             //TODO InputPlane清空 recyclerView 最后一个字号变大 最好加一个动画
             var saveItem = dataRepository.saveItem(waitCalSB.toString())
             //通知界面变更
@@ -75,7 +75,7 @@ class UniversalPresent(var dataRepository: IDataBaseSource, val universalView: U
         } catch (e: Exception) {
             universalView.toastMsg(R.string.toast_calculate_problem)
             havedResult = false
-            universalView.setInputPlaneValue(waitCalSB.toString(),havedResult)
+            universalView.setInputPlaneValue(waitCalSB.toString(), havedResult)
         }
     }
 
@@ -83,8 +83,9 @@ class UniversalPresent(var dataRepository: IDataBaseSource, val universalView: U
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun removeItem() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun removeItem(dataId: String, position: Int) {
+        dataRepository.deleItem(dataId)
+        universalView.removeItem(position)
     }
 
 

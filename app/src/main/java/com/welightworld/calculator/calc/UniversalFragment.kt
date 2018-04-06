@@ -32,8 +32,9 @@ class UniversalFragment : Fragment(), UniversalContract.View {
         recyclerView_history.smoothScrollToPosition(historyAdapter.data.size)
     }
 
-    override fun removeItem(table: HistoryTable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun removeItem(position: Int) {
+        historyAdapter.remove(position)
+        recyclerView_history.smoothScrollToPosition(historyAdapter.data.size)
     }
 
     override fun loadData(mData: List<HistoryTable>) {
@@ -138,6 +139,16 @@ class UniversalFragment : Fragment(), UniversalContract.View {
             val mClipData = ClipData.newPlainText(historyTable?.comment, historyTable?.result)
             cm.primaryClip = mClipData
             activity!!.toast(getString(R.string.copy_success) + historyTable?.result)
+        }
+
+
+        historyAdapter.setOnItemLongClickListener { adapter, view, position ->
+
+
+            var dataId:String = historyAdapter.data.get(position).id
+            presenter.removeItem(dataId,position)
+
+            true
         }
 
         recyclerView_history.smoothScrollToPosition(historyAdapter.data.size)

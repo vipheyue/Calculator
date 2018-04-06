@@ -2,10 +2,8 @@ package com.welightworld.calculator
 
 import android.app.Application
 import com.tencent.bugly.Bugly
-import com.tencent.bugly.crashreport.CrashReport
 import io.realm.Realm
 import io.realm.RealmConfiguration
-
 
 
 /**
@@ -17,11 +15,15 @@ class MyApplication : Application() {
         INSTANCE = this
         super.onCreate()
         Realm.init(this)
-        val config = RealmConfiguration.Builder().name("myrealm.realm").build()
+
+        val config = RealmConfiguration.Builder().name("myrealmV2.realm").build()
         Realm.setDefaultConfiguration(config)
+
+
         Bugly.init(getApplicationContext(), "27bc8c201e", false);
 
     }
+
     companion object {
         private lateinit var INSTANCE: MyApplication
 

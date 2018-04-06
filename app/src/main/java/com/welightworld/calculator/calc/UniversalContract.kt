@@ -38,7 +38,7 @@ interface UniversalContract {
 
         fun addItem(table: HistoryTable)
 
-        fun removeItem(table: HistoryTable)
+        fun removeItem(table: Int)
 
         fun loadData(mData: List<HistoryTable>)
 
@@ -53,6 +53,6 @@ interface UniversalContract {
         fun calcResult()
 
         fun copyResult()
-        fun removeItem()
+        fun removeItem(dataId: String, position: Int)
     }
 }
