@@ -1,4 +1,4 @@
-package com.welightworld.calculator;
+package com.welightworld.calculator.db;
 
 import java.util.UUID;
 

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.widget.Button
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.welightworld.calculator.db.HistoryTable
 import io.realm.Realm
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast

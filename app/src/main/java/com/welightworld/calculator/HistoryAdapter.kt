@@ -2,6 +2,7 @@ package com.welightworld.calculator
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.welightworld.calculator.db.HistoryTable
 
 
 class HistoryAdapter(layoutResId: Int, data: List<HistoryTable>?) : BaseQuickAdapter<HistoryTable, BaseViewHolder>(layoutResId, data) {

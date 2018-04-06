@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import com.udojava.evalex.Expression
+import com.welightworld.calculator.db.HistoryTable
 import io.realm.Realm
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast

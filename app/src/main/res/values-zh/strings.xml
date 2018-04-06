@@ -7,9 +7,12 @@
 
     <string name="action_settings">Settings</string>
     <string name="digital_del">删除</string>
+    <string name="digital_clear">清空</string>
+
     <string name="copy_success">复制成功:</string>
     <string name="set_remark">设置备注</string>
     <string name="tip_dele">删除</string>
+
     <string name="cancel">取消</string>
     <string name="toast_calculate_problem">输入的表达式有问题哦!</string>
     <string name="skin">换肤</string>

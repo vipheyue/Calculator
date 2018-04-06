@@ -18,6 +18,7 @@ package com.welightworld.calculator.calc
 
 import com.example.android.architecture.blueprints.todoapp.BasePresenter
 import com.example.android.architecture.blueprints.todoapp.BaseView
+import com.welightworld.calculator.db.HistoryTable
 
 
 /**
@@ -27,15 +28,31 @@ interface UniversalContract {
 
     interface View : BaseView<Presenter> {
 
+        fun setInputPlaneValue(mContent: String,complish:Boolean)
 
-        fun toastMsg(msg: String)
+        fun toastMsg(msgId: Int)
 
         fun showSuccessDialog()
+
+        fun changeBg()
+
+        fun addItem(table: HistoryTable)
+
+        fun removeItem(table: HistoryTable)
+
+        fun loadData(mData: List<HistoryTable>)
 
     }
 
     interface Presenter : BasePresenter {
 
-        fun calcResult(express: String)
+        fun inputDigital(digitalNum: String)
+        fun inputOperator(operator: String)
+        fun delOneInput()
+        fun clearInput()
+        fun calcResult()
+
+        fun copyResult()
+        fun removeItem()
     }
 }

@@ -1,37 +1,17 @@
 package com.welightworld.calculator
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.DialogInterface
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import com.udojava.evalex.Expression
 import com.welightworld.calculator.calc.UniversalFragment
 import com.welightworld.calculator.calc.UniversalPresent
-import io.realm.Realm
+import com.welightworld.calculator.db.DataBaseRepository
 import kotlinx.android.synthetic.main.app_bar_drawer.*
-import kotlinx.android.synthetic.main.content_drawer.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
-
-
 
 
 class MainActivity : AppCompatActivity() {
-    var waitCalculateStr: String = ""
-    var havedResult: Boolean = false
-    var lastResult: String = ""
-    var dataCenter = ArrayList<HistoryTable>()
-    val realm = Realm.getDefaultInstance() // opens "myrealm.realm"
-    lateinit var historyAdapter: HistoryAdapter
     lateinit var mSoundPool: SoundPool
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,8 +24,13 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         //创建 MVP 关系
 
+        var dataBaseRepository = DataBaseRepository(this)
         var universalFragment = UniversalFragment()
-        var universalPresent = UniversalPresent(universalFragment)
+
+        var universalPresent = UniversalPresent(dataBaseRepository,universalFragment)
+
+        supportFragmentManager.beginTransaction().replace(R.id.fl_coninter, universalFragment).commit()
+        return
 
         mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         var piano_1 = mSoundPool.load(this, R.raw.piano_1, 1)
@@ -59,121 +44,15 @@ class MainActivity : AppCompatActivity() {
         var piano_9 = mSoundPool.load(this, R.raw.piano_9, 1)
         var piano_10 = mSoundPool.load(this, R.raw.piano_0, 1)
         var piano_c = mSoundPool.load(this, R.raw.piano_c, 1)
-        var changeBg = ChangeBg()
-        changeBg.change(btn_operator_div, this)
-        changeBg.change(btn_operator_plus, this)
-        changeBg.change(btn_operator_sub, this)
-        changeBg.change(btn_operator_add, this)
-        changeBg.change(btn_operator_equal, this)
-        btn_digital_del.setOnLongClickListener {
-            waitCalculateStr = ""
-            tv_equation_panel.setText(waitCalculateStr)
-            havedResult = false
-            true
-        }
+
         fab.setOnClickListener { view ->
             //            drawer_layout.openDrawer(GravityCompat.START)
             startActivity<CategoryActivity>()
             finish()
         }
-        recyclerView_history.setLayoutManager(LinearLayoutManager(this))
-        val query = realm.where(HistoryTable::class.java)
-        val findAll = query.findAll().toList()
-        dataCenter.addAll(findAll)
-        historyAdapter = HistoryAdapter(R.layout.history_item, dataCenter)
-        recyclerView_history.adapter = historyAdapter
-        historyAdapter.setOnItemClickListener { adapter, view, position ->
-            val historyTable = dataCenter.get(position)
-            val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val mClipData = ClipData.newPlainText(historyTable.comment, historyTable.result)
-            cm.primaryClip = mClipData
-            toast(getString(R.string.copy_success) + historyTable.result)
-        }
-        historyAdapter.setOnItemLongClickListener { adapter, view, position ->
-            val builder = AlertDialog.Builder(this).setTitle(getString(R.string.tip_dele))
 
-            val inflater = getLayoutInflater()
-            var view = inflater.inflate(R.layout.add_remark, null)
-            var et_remark = view.findViewById<EditText>(R.id.et_remark)
-            builder.setView(view)
-                    .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, id ->
-                        //从数据库中删除
-//                        realm.beginTransaction()
-                        var waitDealObj=realm.where(HistoryTable::class.java).equalTo("result", dataCenter.get(position).result).findFirst()
-                        realm.executeTransaction {
-                            waitDealObj?.deleteFromRealm()
-                        }
-//                        val delhistoryTable = HistoryTable(dataCenter.get(position).result)
-//                        dataCenter.get(position).deleteFromRealm()
+ }
 
-                        historyAdapter.remove(position)
-//                        realm.commitTransaction()
-                        recyclerView_history.smoothScrollToPosition(dataCenter.size)
-
-
-                        //存入数据库
-//                        realm.beginTransaction()
-//                        val historyTable = HistoryTable(dataCenter.get(position).result)
-//                        historyTable.comment = et_remark.text.toString().trim()
-//                        val realmUser = realm.copyToRealm(historyTable)
-//                        realm.commitTransaction()
-//                        historyAdapter.addData(historyTable)
-//                        recyclerView_history.smoothScrollToPosition(dataCenter.size)
-                    })
-
-            builder.create().show()
-
-            true
-        }
-        recyclerView_history.smoothScrollToPosition(dataCenter.size)
-    }
-
-    fun operatorOnClick(view: View) {
-        val symbol = (view as Button).text.toString()
-        if (havedResult) {//如果之前有绩结果 则在之前的基础上进行运算
-            waitCalculateStr = lastResult
-            havedResult = false//新表达式开始 这个表达式还没有结果
-        }
-        waitCalculateStr += symbol
-        tv_equation_panel.setText(waitCalculateStr)
-    }
-
-    fun equalOnClick(view: View) {
-        val symbol = (view as Button).text.toString()
-        if (havedResult) return
-        try {
-            //计算表达式
-            val expression = Expression(waitCalculateStr)
-            val result = expression.eval().toPlainString()
-            //添加 等号 和 结果
-            waitCalculateStr += symbol + result
-            tv_equation_panel.setText(waitCalculateStr)
-            //计算状态重置和记录结果
-            havedResult = true
-            lastResult = result
-            //存入数据库
-            realm.beginTransaction()
-            val historyTable = HistoryTable(waitCalculateStr)
-            val realmUser = realm.copyToRealm(historyTable)
-            realm.commitTransaction()
-            historyAdapter.addData(historyTable)
-            recyclerView_history.smoothScrollToPosition(dataCenter.size)
-        } catch (e: Exception) {
-            toast(getString(R.string.toast_calculate_problem))
-            havedResult = false
-        }
-    }
-
-    fun digitalOnClick(view: View) {
-        val symbol = (view as Button).text.toString()
-        if (havedResult) waitCalculateStr = ""//新一轮计算 重置表达式
-        havedResult = false //新一轮计算 重置
-        waitCalculateStr += symbol
-        tv_equation_panel.setText(waitCalculateStr)
-
-        createNewSoundPool(symbol)
-
-    }
 
     private fun createNewSoundPool(symbol: String) {
         if (configOpenSound && symbol.toCharArray()[0].isDigit()) {
@@ -182,21 +61,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun delOnclick(view: View) {
-        if (havedResult) waitCalculateStr = ""
-        havedResult = false
-        if (waitCalculateStr.isNotEmpty()) waitCalculateStr = waitCalculateStr.substring(0, waitCalculateStr.length - 1)
-        tv_equation_panel.setText(waitCalculateStr)
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-        ClipboardManagerHelper.discernSymbol(this)
-    }
 
     override fun onDestroy() {
-        realm.close()
         mSoundPool.release()
         super.onDestroy()
     }
