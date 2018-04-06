@@ -168,16 +168,16 @@ class UniversalFragment : Fragment(), UniversalContract.View {
 
         mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         var piano_1 = mSoundPool.load(activity, R.raw.piano_1, 1)
-//        var piano_2 = mSoundPool.load(activity, R.raw.piano_2, 1)
-//        var piano_3 = mSoundPool.load(activity, R.raw.piano_3, 1)
-//        var piano_4 = mSoundPool.load(activity, R.raw.piano_4, 1)
-//        var piano_5 = mSoundPool.load(activity, R.raw.piano_5, 1)
-//        var piano_6 = mSoundPool.load(activity, R.raw.piano_6, 1)
-//        var piano_7 = mSoundPool.load(activity, R.raw.piano_7, 1)
-//        var piano_8 = mSoundPool.load(activity, R.raw.piano_8, 1)
-//        var piano_9 = mSoundPool.load(activity, R.raw.piano_9, 1)
-//        var piano_10 = mSoundPool.load(activity, R.raw.piano_0, 1)
-//        var piano_c = mSoundPool.load(activity, R.raw.piano_c, 1)
+        var piano_2 = mSoundPool.load(activity, R.raw.piano_2, 1)
+        var piano_3 = mSoundPool.load(activity, R.raw.piano_3, 1)
+        var piano_4 = mSoundPool.load(activity, R.raw.piano_4, 1)
+        var piano_5 = mSoundPool.load(activity, R.raw.piano_5, 1)
+        var piano_6 = mSoundPool.load(activity, R.raw.piano_6, 1)
+        var piano_7 = mSoundPool.load(activity, R.raw.piano_7, 1)
+        var piano_8 = mSoundPool.load(activity, R.raw.piano_8, 1)
+        var piano_9 = mSoundPool.load(activity, R.raw.piano_9, 1)
+        var piano_10 = mSoundPool.load(activity, R.raw.piano_0, 1)
+        var piano_c = mSoundPool.load(activity, R.raw.piano_c, 1)
     }
 
     private fun createNewSoundPool(symbol: String) {

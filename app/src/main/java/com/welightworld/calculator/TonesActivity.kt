@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_tones.*
 
 class TonesActivity : AppCompatActivity() {
+    lateinit var mSoundPool: SoundPool
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,44 +23,33 @@ class TonesActivity : AppCompatActivity() {
         mActionBar!!.setHomeButtonEnabled(true)
         mActionBar.setDisplayHomeAsUpEnabled(true)
         mActionBar.title = "音效"
-
+        mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        var tones_1 = mSoundPool.load(this, R.raw.dingding, 1)
+        var tones_2 = mSoundPool.load(this, R.raw.mo, 1)
+        var tones_3 = mSoundPool.load(this, R.raw.tata, 1)
+        var tones_4 = mSoundPool.load(this, R.raw.piano_9, 1)
 
         rbtn_no.setOnClickListener {
             configSoundTones=tones_state_mute
       }
 
-        rbtn_ding.setOnCheckedChangeListener { compoundButton, b ->
+        rbtn_ding.setOnClickListener {
             configSoundTones= tones_state_ding
-            var mSoundPool = SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-            var piano_1 = mSoundPool.load(this, R.raw.dingding, 1)
             mSoundPool.play(1, 1f, 1f, 0, 0, 1f)
-
         }
-//        rbtn_ding.setOnClickListener {
-//            configSoundTones= tones_state_ding
-//            var mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-//            var piano_1 = mSoundPool.load(this, R.raw.dingding, 1)
-//            mSoundPool.play(1, 1f, 1f, 0, 0, 1f)
-//        }
         rbtn_mo.setOnClickListener {
             configSoundTones= tones_state_mo
-            var mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-            var piano_1 = mSoundPool.load(this, R.raw.mo, 1)
-            mSoundPool.play(1, 1f, 1f, 0, 0, 1f)
+            mSoundPool.play(2, 1f, 1f, 0, 0, 1f)
 
         }
         rbtn_tata.setOnClickListener {
             configSoundTones= tones_state_tata
-            var mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-            var piano_1 = mSoundPool.load(this, R.raw.tata, 1)
-            mSoundPool.play(1, 1f, 1f, 0, 0, 1f)
+            mSoundPool.play(3, 1f, 1f, 0, 0, 1f)
 
         }
         rbtn_piano_9.setOnClickListener {
             configSoundTones= tones_state_piano9
-            var mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-            var piano_1 = mSoundPool.load(this, R.raw.piano_9, 1)
-            mSoundPool.play(1, 1f, 1f, 0, 0, 1f)
+            mSoundPool.play(4, 1f, 1f, 0, 0, 1f)
 
         }
     }
@@ -68,5 +58,9 @@ class TonesActivity : AppCompatActivity() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
         return super.onSupportNavigateUp()
+    }
+    override fun onDestroy() {
+        mSoundPool.release()
+        super.onDestroy()
     }
 }

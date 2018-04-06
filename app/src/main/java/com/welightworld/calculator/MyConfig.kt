@@ -16,6 +16,6 @@ import android.graphics.Color
 
     var configOpenSound by Preference(MyApplication.get(), "configOpenSound", true)
 
-    var configSoundTones by Preference(MyApplication.get(), "configOpenSound", tones_state_mute)
+    var configSoundTones by Preference(MyApplication.get(), "configSoundTones", tones_state_mute)
 
 
