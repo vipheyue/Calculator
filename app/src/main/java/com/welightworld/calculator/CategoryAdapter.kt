@@ -3,6 +3,7 @@ package com.welightworld.calculator
 import android.app.Activity
 import android.content.Intent
 import android.widget.Button
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.welightworld.calculator.db.HistoryTable
@@ -62,13 +63,17 @@ class CategoryAdapter : BaseQuickAdapter<CategoryBean, BaseViewHolder> {
                 }
                 CalculatorEnum.FEEDBACK -> {
                     button.setOnClickListener {
-                        val intent = Intent(Intent.ACTION_SEND)
-                        intent.type = "text/html"
-                        intent.putExtra(Intent.EXTRA_EMAIL, mActivity.getString(R.string.email))
-                        intent.putExtra(Intent.EXTRA_SUBJECT, mActivity.getString(R.string.feedback) + mActivity.getString(R.string.app_name))
-                        intent.putExtra(Intent.EXTRA_TEXT, mActivity.getString(R.string.feedback))
-                        mActivity.startActivity(Intent.createChooser(intent, "Send Email"))
-                        mActivity.toast("请加入QQ群:469859289 email: " + mActivity.getString(R.string.email))
+
+                        FeedbackAPI.openFeedbackActivity();
+                        FeedbackAPI.setDefaultUserContactInfo("rumengjijiang@foxmail.com")
+
+//                        val intent = Intent(Intent.ACTION_SEND)
+//                        intent.type = "text/html"
+//                        intent.putExtra(Intent.EXTRA_EMAIL, mActivity.getString(R.string.email))
+//                        intent.putExtra(Intent.EXTRA_SUBJECT, mActivity.getString(R.string.feedback) + mActivity.getString(R.string.app_name))
+//                        intent.putExtra(Intent.EXTRA_TEXT, mActivity.getString(R.string.feedback))
+//                        mActivity.startActivity(Intent.createChooser(intent, "Send Email"))
+//                        mActivity.toast("请加入QQ群:469859289 email: " + mActivity.getString(R.string.email))
                     }
                 }
 

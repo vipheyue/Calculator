@@ -1,6 +1,7 @@
 package com.welightworld.calculator
 
 import android.app.Application
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI
 import com.tencent.bugly.Bugly
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -21,6 +22,7 @@ class MyApplication : Application() {
 
 
         Bugly.init(getApplicationContext(), "27bc8c201e", false);
+        FeedbackAPI.init(this,"24843125","ea4da7caa2d8dbb362a3bcb79374ec84")
 
     }
 
