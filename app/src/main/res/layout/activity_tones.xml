@@ -25,30 +25,30 @@
         <RadioButton
             android:id="@+id/rbtn_no"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="mute 无声音~" />
         <RadioButton
             android:id="@+id/rbtn_ding"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="ding~" />
 
         <RadioButton
             android:id="@+id/rbtn_mo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="mo~" />
 
         <RadioButton
             android:id="@+id/rbtn_tata"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="tata~" />
 
         <RadioButton
             android:id="@+id/rbtn_piano_9"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="piano_9~" />
     </RadioGroup>
 </LinearLayout>

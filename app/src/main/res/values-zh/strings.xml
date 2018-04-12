@@ -18,11 +18,12 @@
     <string name="skin">换肤</string>
     <string name="keytone">按键音</string>
     <string name="universal_expression">万能表达式</string>
-    <string name="Capital_RMB">大写人民币</string>
-    <string name="clean_History">清理历史记录</string>
+    <string name="Capital_RMB">繁体数字</string>
+    <string name="clean_History">清理历史</string>
     <string name="share">分享</string>
     <string name="Family_relationships">亲戚计算器</string>
-    <string name="feedback">意见反馈</string>
+    <string name="feedback">建议</string>
+    <string name="opensource">开源</string>
     <string name="title_change_color">设置主页背景</string>
     <string name="ok">确定</string>
     <string name="universal_describe">
@@ -74,7 +75,7 @@ deg（表达式）	将以弧度度量的角度转换为以度数度量的近似�
     <string name="welfare">五险一金(个人缴纳部分)</string>
     <string name="getHandSalary">到手工资:</string>
     <string name="tip_result_show">结果将在这儿展示</string>
-    <string name="normal_cal">普通计算器</string>
+    <string name="normal_cal">日常计算</string>
     <string name="house_debt_cal">房贷计算器</string>
     <string name="year_end_bonus">年终奖</string>
     <string name="input_year_bound">请输入你的年终奖</string>

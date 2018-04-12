@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!--    <gradient
+            android:startColor="#FFFF0000"
+            android:endColor="#80FF00FF"
+            android:angle="270"/>--><!--渐变色 和solid不能一起用-->
+    <padding
+        android:bottom="7dp"
+        android:left="7dp"
+        android:right="7dp"
+        android:top="7dp" />
+    <corners android:radius="90dp" /><!--4个角的弧度-->
+    <stroke
+        android:width="0dp"
+        android:color="#FFFFFF"
+        android:dashGap="0dp"
+        android:dashWidth="2dp" />
+    <!--color 边线颜色-->
+    <!--dashGap 间隙大小-->
+    <!--dashWidth 边线长度-->
+       <solid android:color="#A5000000" /><!--内部填充色 和渐变色不能一起用-->
+</shape>

@@ -2,6 +2,7 @@ package com.welightworld.calculator
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.widget.Button
 import com.alibaba.sdk.android.feedback.impl.FeedbackAPI
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -23,7 +24,6 @@ class CategoryAdapter : BaseQuickAdapter<CategoryBean, BaseViewHolder> {
         var button = helper.getView<Button>(R.id.button)
         button.setText(item.name)
         if (item.directDeal) {//哈哈 偷懒了 应该用 mulAdapter
-            //TODO 明天改一下 用 item 的值 来判断
             when (item.type) {
                 CalculatorEnum.SKIN -> {
                     button.setOnClickListener {
@@ -76,6 +76,19 @@ class CategoryAdapter : BaseQuickAdapter<CategoryBean, BaseViewHolder> {
 //                        mActivity.toast("请加入QQ群:469859289 email: " + mActivity.getString(R.string.email))
                     }
                 }
+
+                CalculatorEnum.OPENSOURCE -> {
+                    button.setOnClickListener {
+
+                        val intent = Intent()
+                        intent.action = "android.intent.action.VIEW"
+                        val content_uri = Uri.parse("https://github.com/vipheyue/Calculator")
+                        intent.data = content_uri
+                        mActivity.startActivity(intent)
+                    }
+                }
+
+
 
             }
             return

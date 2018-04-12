@@ -106,7 +106,6 @@ class UniversalFragment : Fragment(), UniversalContract.View {
             presenter.inputDigital(symbol)
             createNewSoundPool(symbol)
             return@OnClickListener
-//        createNewSoundPool(symbol)
         }
         btn_digital_1.setOnClickListener(digitalClickListener)
         btn_digital_2.setOnClickListener(digitalClickListener)
@@ -167,22 +166,26 @@ class UniversalFragment : Fragment(), UniversalContract.View {
         recyclerView_history.smoothScrollToPosition(historyAdapter.data.size)
 
         mSoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-        var piano_1 = mSoundPool.load(activity, R.raw.piano_1, 1)
-        var piano_2 = mSoundPool.load(activity, R.raw.piano_2, 1)
-        var piano_3 = mSoundPool.load(activity, R.raw.piano_3, 1)
-        var piano_4 = mSoundPool.load(activity, R.raw.piano_4, 1)
-        var piano_5 = mSoundPool.load(activity, R.raw.piano_5, 1)
-        var piano_6 = mSoundPool.load(activity, R.raw.piano_6, 1)
-        var piano_7 = mSoundPool.load(activity, R.raw.piano_7, 1)
-        var piano_8 = mSoundPool.load(activity, R.raw.piano_8, 1)
-        var piano_9 = mSoundPool.load(activity, R.raw.piano_9, 1)
-        var piano_10 = mSoundPool.load(activity, R.raw.piano_0, 1)
-        var piano_c = mSoundPool.load(activity, R.raw.piano_c, 1)
+//        var piano_1 = mSoundPool.load(activity, R.raw.piano_1, 1)
+//        var piano_2 = mSoundPool.load(activity, R.raw.piano_2, 1)
+//        var piano_3 = mSoundPool.load(activity, R.raw.piano_3, 1)
+//        var piano_4 = mSoundPool.load(activity, R.raw.piano_4, 1)
+//        var piano_5 = mSoundPool.load(activity, R.raw.piano_5, 1)
+//        var piano_6 = mSoundPool.load(activity, R.raw.piano_6, 1)
+//        var piano_7 = mSoundPool.load(activity, R.raw.piano_7, 1)
+//        var piano_8 = mSoundPool.load(activity, R.raw.piano_8, 1)
+//        var piano_9 = mSoundPool.load(activity, R.raw.piano_9, 1)
+//        var piano_10 = mSoundPool.load(activity, R.raw.piano_0, 1)
+//        var piano_c = mSoundPool.load(activity, R.raw.piano_c, 1)
+        var tones_1 = mSoundPool.load(activity, R.raw.dingding, 1)
+        var tones_2 = mSoundPool.load(activity, R.raw.mo, 1)
+        var tones_3 = mSoundPool.load(activity, R.raw.tata, 1)
+        var tones_4 = mSoundPool.load(activity, R.raw.piano_9, 1)
     }
 
     private fun createNewSoundPool(symbol: String) {
-        if (configOpenSound && symbol.toCharArray()[0].isDigit()) {
-            mSoundPool.play(symbol.toCharArray()[0].toString().toInt(), 1f, 1f, 0, 0, 1f)
+        if (configSoundTones>0) {
+            mSoundPool.play(configSoundTones, 1f, 1f, 0, 0, 1f)
         }
     }
 
