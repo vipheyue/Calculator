@@ -5,6 +5,11 @@ import com.tencent.bugly.Bugly
 import com.tencent.bugly.crashreport.CrashReport
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
+import com.orhanobut.logger.Logger.addLogAdapter
+
+
 
 
 
@@ -20,7 +25,7 @@ class MyApplication : Application() {
         val config = RealmConfiguration.Builder().name("myrealm.realm").build()
         Realm.setDefaultConfiguration(config)
         Bugly.init(getApplicationContext(), "27bc8c201e", false);
-
+        Logger.addLogAdapter(AndroidLogAdapter())
     }
     companion object {
         private lateinit var INSTANCE: MyApplication
