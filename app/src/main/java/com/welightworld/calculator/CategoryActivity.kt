@@ -18,7 +18,7 @@ class CategoryActivity : AppCompatActivity() {
     private fun initView() {
         dataCenter.add(CategoryBean(CalculatorEnum.NORMAL,getString(R.string.normal_cal), MainActivity::class.java.name))
 //        dataCenter.add(CategoryBean(CalculatorEnum.HOUSE, getString(R.string.house_debt_cal), HouseTaxActivity::class.java.name))
-        dataCenter.add(CategoryBean(CalculatorEnum.SALARY, getString(R.string.salary_tax), IndividualTaxActivity::class.java.name))
+        dataCenter.add(CategoryBean(CalculatorEnum.SALARY, getString(R.string.salary_tax), IndividualActivity::class.java.name))
 //        dataCenter.add(CategoryBean(CalculatorEnum.YEARBONUS, getString(R.string.year_end_bonus), YearBonusActivity::class.java.name))
 //        dataCenter.add(CategoryBean(CalculatorEnum.UNIVERSAL, getString(R.string.universal_expression), UniversalExpressionActivity::class.java.name))
         dataCenter.add(CategoryBean(CalculatorEnum.CAPITAL, getString(R.string.Capital_RMB), TraditionalActivity::class.java.name))
@@ -31,7 +31,7 @@ class CategoryActivity : AppCompatActivity() {
         dataCenter.add(CategoryBean(CalculatorEnum.SHARE, getString(R.string.share), "", true))
         dataCenter.add(CategoryBean(CalculatorEnum.FEEDBACK, getString(R.string.feedback), "", true))
 
-        recyclerView_category.setLayoutManager(GridLayoutManager(this, 1))
+        recyclerView_category.setLayoutManager(GridLayoutManager(this, 3))
         categoryAdapter = CategoryAdapter(this,R.layout.item_category, dataCenter)
         recyclerView_category.adapter = categoryAdapter
     }

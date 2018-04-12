@@ -46,6 +46,7 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
     }
+
 }
 
 dependencies {
@@ -68,11 +69,12 @@ dependencies {
     compile 'com.github.QuadFlask:colorpicker:0.0.13'
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+
     implementation 'com.google.code.gson:gson:2.8.2'
 
     compile 'com.aliyun.ams:alicloud-android-feedback:3.1.2'
     compile 'com.aliyun.ams:alicloud-android-utdid:1.1.5.3'
     compile 'com.aliyun.ams:alicloud-android-ut:5.1.0'
     compile 'com.aliyun.ams:alicloud-android-utils:1.1.1'
-
+    implementation 'com.orhanobut:logger:2.2.0'
 }

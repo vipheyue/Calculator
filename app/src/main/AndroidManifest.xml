@@ -41,10 +41,9 @@
         <activity android:name=".HouseTaxActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".YearBonusActivity" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
-        <activity android:name=".TonesActivity">
+
+        <activity android:name=".TonesActivity"/>
+        <activity android:name=".IndividualActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

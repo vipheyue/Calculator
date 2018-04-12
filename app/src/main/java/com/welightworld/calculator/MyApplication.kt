@@ -5,6 +5,11 @@ import com.alibaba.sdk.android.feedback.impl.FeedbackAPI
 import com.tencent.bugly.Bugly
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
+import com.orhanobut.logger.Logger.addLogAdapter
+
+
 
 
 /**
@@ -24,6 +29,7 @@ class MyApplication : Application() {
         Bugly.init(getApplicationContext(), "27bc8c201e", false);
         FeedbackAPI.init(this,"24843125","ea4da7caa2d8dbb362a3bcb79374ec84")
 
+        Logger.addLogAdapter(AndroidLogAdapter())
     }
 
     companion object {
