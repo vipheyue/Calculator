@@ -4,23 +4,28 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Canvas
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback
+import com.chad.library.adapter.base.listener.OnItemDragListener
+import com.chad.library.adapter.base.listener.OnItemSwipeListener
 import com.udojava.evalex.Expression
 import io.realm.Realm
 import kotlinx.android.synthetic.main.app_bar_drawer.*
 import kotlinx.android.synthetic.main.content_drawer.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +36,8 @@ class MainActivity : AppCompatActivity() {
     val realm = Realm.getDefaultInstance() // opens "myrealm.realm"
     lateinit var historyAdapter: HistoryAdapter
     lateinit var mSoundPool: SoundPool
+    private var mItemTouchHelper: ItemTouchHelper? = null
+    private var mItemDragAndSwipeCallback: ItemDragAndSwipeCallback? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +81,15 @@ class MainActivity : AppCompatActivity() {
         val findAll = query.findAll().toList()
         dataCenter.addAll(findAll)
         historyAdapter = HistoryAdapter(R.layout.history_item, dataCenter)
+        mItemDragAndSwipeCallback = ItemDragAndSwipeCallback(historyAdapter)
+        mItemTouchHelper = ItemTouchHelper(mItemDragAndSwipeCallback)
+        mItemTouchHelper!!.attachToRecyclerView(recyclerView_history)
+        mItemDragAndSwipeCallback!!.setSwipeMoveFlags(ItemTouchHelper.START or ItemTouchHelper.END)
+        historyAdapter.enableSwipeItem()
+        historyAdapter.setOnItemSwipeListener(onItemSwipeListener)
+        historyAdapter.enableDragItem(mItemTouchHelper!!)
+        historyAdapter.setOnItemDragListener(listener)
+
         recyclerView_history.adapter = historyAdapter
         historyAdapter.setOnItemClickListener { adapter, view, position ->
             val historyTable = dataCenter.get(position)
@@ -92,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                     .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, id ->
                         //从数据库中删除
 //                        realm.beginTransaction()
-                        var waitDealObj=realm.where(HistoryTable::class.java).equalTo("result", dataCenter.get(position).result).findFirst()
+                        var waitDealObj = realm.where(HistoryTable::class.java).equalTo("result", dataCenter.get(position).result).findFirst()
                         realm.executeTransaction {
                             waitDealObj?.deleteFromRealm()
                         }
@@ -192,5 +208,40 @@ class MainActivity : AppCompatActivity() {
         realm.close()
         mSoundPool.release()
         super.onDestroy()
+    }
+
+
+    val onItemSwipeListener = object : OnItemSwipeListener {
+        override fun onItemSwipeStart(viewHolder: RecyclerView.ViewHolder, pos: Int) {
+            val holder = viewHolder as BaseViewHolder
+            //                holder.setTextColor(R.id.tv, Color.WHITE);
+        }
+
+        override fun clearView(viewHolder: RecyclerView.ViewHolder, pos: Int) {
+            val holder = viewHolder as BaseViewHolder
+            //                holder.setTextColor(R.id.tv, Color.BLACK);
+        }
+
+        override fun onItemSwiped(viewHolder: RecyclerView.ViewHolder, pos: Int) {
+        }
+
+        override fun onItemSwipeMoving(canvas: Canvas, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, isCurrentlyActive: Boolean) {
+            //                canvas.drawText("Just some text", 0, 40, paint);
+        }
+    }
+
+    val listener = object : OnItemDragListener {
+        override fun onItemDragStart(viewHolder: RecyclerView.ViewHolder, pos: Int) {
+            val holder = viewHolder as BaseViewHolder
+            //                holder.setTextColor(R.id.tv, Color.WHITE);
+        }
+
+        override fun onItemDragMoving(source: RecyclerView.ViewHolder, from: Int, target: RecyclerView.ViewHolder, to: Int) {
+        }
+
+        override fun onItemDragEnd(viewHolder: RecyclerView.ViewHolder, pos: Int) {
+            val holder = viewHolder as BaseViewHolder
+            //                holder.setTextColor(R.id.tv, Color.BLACK);
+        }
     }
 }

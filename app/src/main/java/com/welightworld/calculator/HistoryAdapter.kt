@@ -1,10 +1,10 @@
 package com.welightworld.calculator
 
-import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseItemDraggableAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 
 
-class HistoryAdapter(layoutResId: Int, data: List<HistoryTable>?) : BaseQuickAdapter<HistoryTable, BaseViewHolder>(layoutResId, data) {
+class HistoryAdapter(layoutResId: Int, data: List<HistoryTable>?) : BaseItemDraggableAdapter<HistoryTable, BaseViewHolder>(layoutResId, data) {
 
     override fun convert(helper: BaseViewHolder, item: HistoryTable) {
 
