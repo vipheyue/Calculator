@@ -3,19 +3,16 @@ package com.welightworld.calculator
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.DialogInterface
 import android.graphics.Canvas
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback
 import com.chad.library.adapter.base.listener.OnItemDragListener
@@ -98,42 +95,7 @@ class MainActivity : AppCompatActivity() {
             cm.primaryClip = mClipData
             toast(getString(R.string.copy_success) + historyTable.result)
         }
-        historyAdapter.setOnItemLongClickListener { adapter, view, position ->
-            val builder = AlertDialog.Builder(this).setTitle(getString(R.string.tip_dele))
 
-            val inflater = getLayoutInflater()
-            var view = inflater.inflate(R.layout.add_remark, null)
-            var et_remark = view.findViewById<EditText>(R.id.et_remark)
-            builder.setView(view)
-                    .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, id ->
-                        //从数据库中删除
-//                        realm.beginTransaction()
-                        var waitDealObj = realm.where(HistoryTable::class.java).equalTo("result", dataCenter.get(position).result).findFirst()
-                        realm.executeTransaction {
-                            waitDealObj?.deleteFromRealm()
-                        }
-//                        val delhistoryTable = HistoryTable(dataCenter.get(position).result)
-//                        dataCenter.get(position).deleteFromRealm()
-
-                        historyAdapter.remove(position)
-//                        realm.commitTransaction()
-                        recyclerView_history.smoothScrollToPosition(dataCenter.size)
-
-
-                        //存入数据库
-//                        realm.beginTransaction()
-//                        val historyTable = HistoryTable(dataCenter.get(position).result)
-//                        historyTable.comment = et_remark.text.toString().trim()
-//                        val realmUser = realm.copyToRealm(historyTable)
-//                        realm.commitTransaction()
-//                        historyAdapter.addData(historyTable)
-//                        recyclerView_history.smoothScrollToPosition(dataCenter.size)
-                    })
-
-            builder.create().show()
-
-            true
-        }
         recyclerView_history.smoothScrollToPosition(dataCenter.size)
     }
 
@@ -223,6 +185,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onItemSwiped(viewHolder: RecyclerView.ViewHolder, pos: Int) {
+            var waitDealObj = realm.where(HistoryTable::class.java).equalTo("result", dataCenter.get(pos).result).findFirst()
+            realm.executeTransaction {
+                waitDealObj?.deleteFromRealm()
+            }
+            historyAdapter.remove(pos)
+            recyclerView_history.smoothScrollToPosition(dataCenter.size)
+
         }
 
         override fun onItemSwipeMoving(canvas: Canvas, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, isCurrentlyActive: Boolean) {

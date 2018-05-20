@@ -44,11 +44,7 @@
         <activity android:name=".CategoryActivity" />
         <activity android:name=".YearBonusActivity" />
         <activity android:name=".IndividualActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
