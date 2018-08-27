@@ -43,9 +43,8 @@
         <activity android:name=".HouseTaxActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".YearBonusActivity" />
-        <activity android:name=".IndividualActivity">
-
-        </activity>
+        <activity android:name=".IndividualActivity"></activity>
+        <activity android:name=".WebActivity"></activity>
     </application>
 
 </manifest>

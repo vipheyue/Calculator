@@ -10,7 +10,6 @@
         android:id="@+id/recyclerView_category"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/color_panel"
         android:fadingEdge="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

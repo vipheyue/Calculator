@@ -68,7 +68,7 @@ DEG(expression)		Converts an angle measured in radians to an approximately equiv
     <string name="tip_menu_copy">Automatic identification after copying</string>
     <string name="menu_header">www.welightworld.com\n  Rumengjijiang Technology  Co., Ltd\n</string>
     <string name="contact_information">email:vipheyue@foxmail.com</string>
-    <string name="share_content">Please copy the following content to the browser open \n  \n http://heyue.oss-cn-hangzhou.aliyuncs.com/AppData/Calculator/app-release.apk</string>
+    <string name="share_content">Please copy the following content to the browser open \n  \n http://datac.oss-cn-beijing.aliyuncs.com/cal/release/app-release.apk</string>
     <string name="email">vipheyue@foxmail.com</string>
     <string name="open_close_sound">open/close sound</string>
     <string name="set_success">set success</string>
