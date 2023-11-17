@@ -25,9 +25,9 @@ class WebActivity : AppCompatActivity() {
         mActionBar!!.setHomeButtonEnabled(true)
         mActionBar.setDisplayHomeAsUpEnabled(true)
         mActionBar.title = stringTitle
-        webView.webViewClient = MyWebViewClient()
-        webView!!.webChromeClient = MyWebChromeClient()
-        webView.loadUrl(stringUrl)
+//        webView.webViewClient = MyWebViewClient()
+//        webView!!.webChromeClient = MyWebChromeClient()
+//        webView.loadUrl(stringUrl)
     }
 
     private inner class MyWebViewClient : WebViewClient() {
@@ -63,11 +63,11 @@ class WebActivity : AppCompatActivity() {
         if (event.action == KeyEvent.ACTION_DOWN) {
             when (keyCode) {
                 KeyEvent.KEYCODE_BACK -> {
-                    if (webView!!.canGoBack()) {
-                        webView!!.goBack()
-                    } else {
-                        finish()
-                    }
+//                    if (webView!!.canGoBack()) {
+//                        webView!!.goBack()
+//                    } else {
+//                        finish()
+//                    }
                     return true
                 }
             }

@@ -1,8 +1,8 @@
 package com.welightworld.calculator
 
 import android.app.Application
-import com.tencent.bugly.Bugly
-import com.tencent.bugly.crashreport.CrashReport
+//import com.tencent.bugly.Bugly
+//import com.tencent.bugly.crashreport.CrashReport
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import com.orhanobut.logger.AndroidLogAdapter
@@ -24,7 +24,7 @@ class MyApplication : Application() {
         Realm.init(this)
         val config = RealmConfiguration.Builder().name("myrealm.realm").build()
         Realm.setDefaultConfiguration(config)
-        Bugly.init(getApplicationContext(), "27bc8c201e", false);
+//        Bugly.init(getApplicationContext(), "27bc8c201e", false);
         Logger.addLogAdapter(AndroidLogAdapter())
     }
     companion object {
